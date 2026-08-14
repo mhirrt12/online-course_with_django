@@ -11,7 +11,7 @@ def register(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
 
-            return redirect('register')
+            return redirect('login')
 
     else:
         form = RegistrationForm()
