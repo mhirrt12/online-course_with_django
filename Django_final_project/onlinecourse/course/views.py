@@ -7,4 +7,4 @@ from .models import Course
 def course_list(request):
     # Logic to retrieve courses from the database
     courses = Course.objects.all()
-    return render(request, '../templets/course/course_list.html', {'courses': courses})
+    return render(request, 'courses/courses_list.html', {'courses': courses})
