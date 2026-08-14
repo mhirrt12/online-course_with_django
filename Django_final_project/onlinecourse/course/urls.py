@@ -1,6 +1,6 @@
 
 
-from sys import path
+from django.urls import path
 
 
-urlpattern=[path("/courses/","../templates/course/course_list.html",name="course_list")]
+urlpatterns=[path("/courses/", "course_list", name="course_list")]
