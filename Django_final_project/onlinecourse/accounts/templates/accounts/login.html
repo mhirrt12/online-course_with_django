@@ -1,1 +1,26 @@
-<h2>welcome family</h2>
+<h1>Login</h1>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Username:</label>
+    <input type="text" name="username">
+
+    <br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password">
+
+    <br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>
+    Don't have an account?
+    <a href="{% url 'register' %}">Register</a>
+</p>
