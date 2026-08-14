@@ -47,3 +47,6 @@ def login_view(request):
 @login_required
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+def logout_view(request):
+    logout(request)
+    return redirect('login')
