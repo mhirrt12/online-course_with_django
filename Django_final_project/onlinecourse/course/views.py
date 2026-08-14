@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from Django_final_project.onlinecourse.course.models import Course
+from .models import Course
 
 # Create your views here.
 
