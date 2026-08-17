@@ -18,18 +18,6 @@ def register(request):
         form = RegistrationForm()
 
     return render(request, 'accounts/register.html', {'form': form})
-@login_required
-def edit_profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
-
-            return redirect('dashboard')
-    else:
-        form = ProfileForm(instance=request.user)
-    return render(request, 'accounts/edit_profile.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -58,6 +46,19 @@ def login_view(request):
 @login_required
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('dashboard')
+    else:
+        form = ProfileForm(instance=request.user)
+    return render(request, 'accounts/edit_profile.html', {'form': form})
+
 def logout_view(request):
     logout(request)
     return redirect('login')
