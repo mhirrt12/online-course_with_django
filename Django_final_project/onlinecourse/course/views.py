@@ -1,4 +1,4 @@
-from django.http import HTTPResponse
+from django.http import HttpResponse
 
 from django.shortcuts import render
 
@@ -11,4 +11,4 @@ def course_list(request):
     courses = Course.objects.all()
     return render(request, 'courses/courses_list.html', {'courses': courses})
 def home(request):
-    return HTTPResponse("<h1>Welcome to the Online Course Platform</h1><p>Explore our courses and start learning today!</p>")
+    return HttpResponse("<h1>Welcome to the Online Course Platform</h1><p>Explore our courses and start learning today!</p>")
