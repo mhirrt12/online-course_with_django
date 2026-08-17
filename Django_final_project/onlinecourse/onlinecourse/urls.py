@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from Django_final_project.onlinecourse.course import views
+from ..course import views
 
 urlpatterns = [
     path('/',views.home,name='home'),
