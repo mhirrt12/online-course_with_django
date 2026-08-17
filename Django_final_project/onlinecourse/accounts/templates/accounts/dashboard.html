@@ -3,7 +3,9 @@
 <p>Hello, {{ user.username }}!</p>
 
 <p>You are logged in.</p>
-<p>userName: {{ user.username }}</p>
+<!-- <p>userName: {{ user.username }}</p> -->
+ <p>first name: {{ user.first_name }}</p>
+ <p>last name: {{ user.last_name }}</p>
 <p>email: {{ user.email }}</p>
-<button>Edit profile</button>
+<a href="{% url 'edit_profile' %}">Edit profile</a>
 <a href="{% url 'logout' %}">Logout</a>
