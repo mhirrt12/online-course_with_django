@@ -24,9 +24,7 @@ def edit_profile(request):
         form = ProfileForm(request.POST, instance=request.user)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
+            form.save()
 
             return redirect('dashboard')
     else:
