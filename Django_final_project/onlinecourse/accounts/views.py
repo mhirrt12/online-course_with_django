@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
-from Django_final_project.onlinecourse import accounts
+# from Django_final_project.onlinecourse import accounts
 from .forms import ChangePasswordForm, RegistrationForm,ProfileForm
 from django.contrib.auth.decorators import login_required
 
