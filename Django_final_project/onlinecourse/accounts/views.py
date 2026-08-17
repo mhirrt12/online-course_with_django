@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm,ProfileForm
+
+from Django_final_project.onlinecourse import accounts
+from .forms import ChangePasswordForm, RegistrationForm,ProfileForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -58,6 +60,20 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=request.user)
     return render(request, 'accounts/edit_profile.html', {'form': form})
+
+@login_required
+def change_password(request):
+    if  request.method =='POST':
+        form=ChangePasswordForm(request , instance=request.user)
+        
+        if form.is_valid():
+            form.save()
+            return render('login')
+        
+        
+    else:
+        form= ChangePasswordForm(instance=request.user)
+    return render(request, 'accounts/change_password.html',{"form": form})
 
 def logout_view(request):
     logout(request)
