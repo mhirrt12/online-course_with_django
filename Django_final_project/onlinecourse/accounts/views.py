@@ -64,14 +64,16 @@ def edit_profile(request):
 @login_required
 def change_password(request):
     if  request.method =='POST':
-        form=ChangePasswordForm(request , request.POST)
+        form=ChangePasswordForm(request.user , request.POST)
         
         if form.is_valid():
-            form.save()
+            new_password = form.cleaned_data['new_password']
+            request.user.set_password(new_password)
+            request.user.save()
             return redirect('login')
         
     else:
-        form= ChangePasswordForm(request)
+        form= ChangePasswordForm(request.user)
     return render(request, 'accounts/change_password.html',{"form": form})
 
 def logout_view(request):
