@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm
+from .forms import RegistrationForm,ProfileForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -18,9 +18,10 @@ def register(request):
         form = RegistrationForm()
 
     return render(request, 'accounts/register.html', {'form': form})
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST, instance=request.user)
+        form = ProfileForm(request.POST, instance=request.user)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -29,7 +30,7 @@ def edit_profile(request):
 
             return redirect('dashboard')
     else:
-        form = RegistrationForm(instance=request.user)
+        form = ProfileForm(instance=request.user)
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
 def login_view(request):
