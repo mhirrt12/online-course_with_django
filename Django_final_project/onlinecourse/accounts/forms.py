@@ -42,8 +42,8 @@ class ChangePasswordForm(forms.Form):
         widget=forms.PasswordInput,
         label="Confirm New Password"
     )
-    def __init__(self,user, *args, **kwargs):
-        # self.user = kwargs.pop('user', None)
+    def __init__(self, user, *args, **kwargs):
+        # self.user =  kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         self.user=user
 
