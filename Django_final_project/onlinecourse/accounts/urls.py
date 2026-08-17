@@ -9,13 +9,14 @@ urlpatterns=[
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('change_password/', views.change_password, name='change_password'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path(
+   path(
     "password-reset-confirm/<uidb64>/<token>/",
     auth_views.PasswordResetConfirmView.as_view(
         template_name="accounts/password_reset_confirm.html"
     ),
     name="password_reset_confirm",
-),path(
+),
+    path(
     "password-reset/done/",
     auth_views.PasswordResetDoneView.as_view(
         template_name="accounts/password_reset_done.html"
