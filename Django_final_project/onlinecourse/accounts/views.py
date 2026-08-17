@@ -68,8 +68,7 @@ def change_password(request):
         
         if form.is_valid():
             form.save()
-            return render('login')
-        
+            return redirect('login')
         
     else:
         form= ChangePasswordForm(instance=request.user)
