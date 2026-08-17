@@ -22,7 +22,7 @@ from django.urls import include, path
 def home(request):
     return HttpResponse("<h1>Welcome to the Online Course Platform</h1><p>Explore our courses and start learning today!</p>")
 urlpatterns = [
-    # path('/',views.home,name='home'),
+    path('',home,name='home'),
     path('admin/', admin.site.urls),
     path('courses/', include('course.urls')),
     path("accounts/", include("accounts.urls")),
