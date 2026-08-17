@@ -29,3 +29,27 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(
+        widget=forms.PasswordInput,
+        label="Old Password"
+    )
+    new_password = forms.CharField(
+        widget=forms.PasswordInput,
+        label="New Password"
+    )
+    new_password_confirm = forms.CharField(
+        widget=forms.PasswordInput,
+        label="Confirm New Password"
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        new_password = cleaned_data.get('new_password')
+        new_password_confirm = cleaned_data.get('new_password_confirm')
+
+        if new_password and new_password_confirm and new_password != new_password_confirm:
+            raise forms.ValidationError("New passwords do not match.")
+
+        return cleaned_data
