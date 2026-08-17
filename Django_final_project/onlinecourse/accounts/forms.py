@@ -42,13 +42,19 @@ class ChangePasswordForm(forms.Form):
         widget=forms.PasswordInput,
         label="Confirm New Password"
     )
+    def __init__(self,user, *args, **kwargs):
+        # self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        self.user=user
 
     def clean(self):
         cleaned_data = super().clean()
-
+        old_password = cleaned_data.get('old_password')
         new_password = cleaned_data.get('new_password')
         new_password_confirm = cleaned_data.get('new_password_confirm')
 
+        if old_password and not self.user.check_password(old_password):
+            raise forms.ValidationError("Old password is incorrect.")
         if new_password and new_password_confirm and new_password != new_password_confirm:
             raise forms.ValidationError("New passwords do not match.")
 
