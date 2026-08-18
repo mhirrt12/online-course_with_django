@@ -15,4 +15,4 @@ def coursedetail(request,id):
     return render(request,'courses/course_detail.html',{'course':course})
 def enroll(request, id):
     course=Course.objects.get(id=id)
-    course.students.
+    course.students.add(request.user)
