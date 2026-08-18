@@ -19,5 +19,5 @@ def enroll(request,id):
     return HttpResponse("You have successfully enrolled in the course.")
 def mycourse(request):
     courses=request.user.course_set.all()
-    # return render(request,'courses/enrolled.html',{'mycourse':courses})
-    return HttpResponse("You have successfully enrolled in the course.")
+    return render(request,'courses/enrolled.html',{'mycourse':courses})
+    # return HttpResponse("You have successfully enrolled in the course.")
