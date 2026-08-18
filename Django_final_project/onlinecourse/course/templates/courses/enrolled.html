@@ -1,6 +1,6 @@
-<h2>your courses</h2>
+<h1>Your Courses</h1>
 {%for course in mycourse%}
-<h2>{{ course.title }}</h2>
-<h2>{{ course.description }}</h2>
+<h3>{{ course.title }}</h3>
+<p>{{ course.description }}</p>
 <a href="{%url 'unenroll' course.id%}">unenroll</a>
 {%endfor%}
