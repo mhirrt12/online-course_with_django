@@ -16,3 +16,4 @@ def coursedetail(request,id):
 def enroll(request, id):
     course=Course.objects.get(id=id)
     course.students.add(request.user)
+    return HttpResponse("You have successfully enrolled in the course.")
