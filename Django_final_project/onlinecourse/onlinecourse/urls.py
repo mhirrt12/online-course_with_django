@@ -24,7 +24,7 @@ def home(request):
 urlpatterns = [
     path('',home,name='home'),
     path('admin/', admin.site.urls),
-    path('courses/<int:id>/', include('course.urls')),
+    path('courses/', include('course.urls')),
     path("accounts/", include("accounts.urls")),
     # Include the course app's URLs
 ]
