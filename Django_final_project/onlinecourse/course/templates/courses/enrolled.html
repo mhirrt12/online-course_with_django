@@ -2,4 +2,5 @@
 {%for course in mycourse%}
 <h2>{{ course.title }}</h2>
 <h2>{{ course.description }}</h2>
+<a href="{%url 'unenroll' course.id%}">unenroll</a>
 {%endfor%}
