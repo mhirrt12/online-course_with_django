@@ -13,10 +13,11 @@ def course_list(request):
 def coursedetail(request,id):
     course = Course.objects.get(id=id)
     return render(request,'courses/course_detail.html',{'course':course})
-def enroll(request, id):
+def enroll(request,id):
     course=Course.objects.get(id=id)
     course.students.add(request.user)
     return HttpResponse("You have successfully enrolled in the course.")
 def mycourse(request):
     courses=request.user.course_set.all()
-    return render(request,'courses/enrolled.html',{'mycourse':courses})
+    # return render(request,'courses/enrolled.html',{'mycourse':courses})
+    return HttpResponse("You have successfully enrolled in the course.")
