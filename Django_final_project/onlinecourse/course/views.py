@@ -21,3 +21,7 @@ def mycourse(request):
     courses=request.user.course_set.all()
     return render(request,'courses/enrolled.html',{'mycourse':courses})
     # return HttpResponse("You have successfully enrolled in the course.")
+def unenroll(request,id):
+    course=Course.objects.get(id=id)
+    course.students.remove(request.user)
+    return HttpResponse("You have successfully unenrolled from the course.")
