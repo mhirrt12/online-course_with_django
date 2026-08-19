@@ -21,7 +21,7 @@ def coursedetail(request,id):
             review.course=Course.objects.get(id=id)
             review.user=request.user
             review.save()
-            return redirect('course_detail', id=id)
+            return redirect('coursedetail', id=id)
     else:
         form=ReviewForm()
     course = Course.objects.get(id=id)
