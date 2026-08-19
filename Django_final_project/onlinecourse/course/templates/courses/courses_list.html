@@ -1,7 +1,7 @@
 
-<h2>Courses List With Categories</h2>
+<h2 style="text-align: center;color: #333;">Courses List With Categories</h2>
 {% for Category in categories %}
 
-   <h3>{{ Category.name }}</h3>
+   <h3 style="text-align: center;">{{ Category.name }}</h3>
 {% endfor %}
 <a href="{%url 'mycourse' %}">my course</a>
