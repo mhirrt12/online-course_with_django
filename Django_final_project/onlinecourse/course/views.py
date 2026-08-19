@@ -34,8 +34,7 @@ def category_list(request):
         courses=Course.objects.filter(title__icontains=query)
        else:
         courses = Course.objects.all()
-    else:
-       categories = Category.objects.all()
+    categories = Category.objects.all()
     return render(request, 'courses/courses_list.html', {'categories': categories, 'courses': courses})
 def category_detail(request, id):
         
