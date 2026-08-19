@@ -1,0 +1,5 @@
+{% for course in page_obj %}
+    <h2>{{ course.title }}</h2>
+    <h4>Category: {{ course.category.name }}</h4>
+    <p>{{ course.description }}</p>
+{% endfor %}
