@@ -1,1 +1,9 @@
 <p>Searching results ...</p>
+{% for course in courses %}
+    <div>
+        <h3>{{ course.title }}</h3>
+        <h2>Category: {{ course.category.name }}</h2>
+        <p>{{ course.description }}</p>
+
+    </div>
+{% endfor %}
