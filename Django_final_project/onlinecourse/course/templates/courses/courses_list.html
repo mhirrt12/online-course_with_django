@@ -5,8 +5,6 @@
    <button type="submit">Search</button>
 </form>
 {% for Category in categories %}
-
-
    <a href="{% url 'category_detail' id=Category.id %}">
        <h3 style="text-align: center;">{{ Category.name }}</h3>
    </a>
