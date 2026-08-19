@@ -1,6 +1,7 @@
 
 <h2>Courses List</h2>
+{% for Category in categories %}
 
-   <h3>{{ courses.category.name }}</h3>
+   <h3>{{ Category.name }}</h3>
 
 <a href="{%url 'mycourse' %}">my course</a>
