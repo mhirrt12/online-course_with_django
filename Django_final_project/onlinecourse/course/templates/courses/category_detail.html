@@ -1,5 +1,5 @@
-<h2>Welcome To {{ category.name }} Courses</h2>
-<h3>Our Courses</h3>
+<h2 style="text-align: center;">Welcome To {{ category.name }} Courses</h2>
+<h3 style="text-align: center;">Our Courses</h3>
 {% for course in courses %}
-    <h4>{{ course.title }}</h4>
+    <h4 style="text-align: center;">{{ course.title }}</h4><button type="submit"><a href="{% url 'coursedetail' course.id %}">View Details</a></button>
 {% endfor %}
