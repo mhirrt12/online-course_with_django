@@ -1,11 +1,9 @@
 
 <h2>Courses List</h2>
 {% for course in courses %}
-   <h3>{{ course.title }} - {{ course.category.name }}</h3>
-   <p>{{ course.description }}</p>
-   <p>Created at: {{ course.created_at }}</p>
+   <h3>{{ course.category.name }}</h3>
+  
    <a href="{% url 'coursedetail' course.id %}">View Details</a>
-   <a href="{% url 'enroll' course.id %}">Enroll</a>
 {% endfor %}
 
 <a href="{%url 'mycourse' %}">my course</a>
