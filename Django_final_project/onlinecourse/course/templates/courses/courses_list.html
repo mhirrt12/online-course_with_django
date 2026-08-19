@@ -2,6 +2,8 @@
 <h2 style="text-align: center;color: #181929;">Courses List With Categories</h2>
 {% for Category in categories %}
 
-   <h3 style="text-align: center;">{{ Category.name }}</h3>
+   <a href="{% url 'category_detail' id=Category.id %}">
+       <h3 style="text-align: center;">{{ Category.name }}</h3>
+   </a>
 {% endfor %}
 <a href="{%url 'mycourse' %}">my course</a>
