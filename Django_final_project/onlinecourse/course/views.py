@@ -22,10 +22,6 @@ def coursedetail(request,id):
             review.user=request.user
             review.save()
             return redirect('course_detail', id=id)
-        course = Course.objects.get(id=id)
-        rating = request.POST.get('rating')
-        comment = request.POST.get('comment')
-        Review.objects.create(course=course, user=request.user, rating=rating, comment=comment)
     else:
         form=ReviewForm()
     course = Course.objects.get(id=id)
