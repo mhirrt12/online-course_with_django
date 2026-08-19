@@ -3,3 +3,11 @@
     <h4>Category: {{ course.category.name }}</h4>
     <p>{{ course.description }}</p>
 {% endfor %}
+<h3>Page navigation:</h3>
+{{ page_obj.paginator.num_pages }} pages
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
