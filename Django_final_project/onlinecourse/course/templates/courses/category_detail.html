@@ -1,1 +1,5 @@
 <h2>Welcome To {{ category.name }} Courses</h2>
+<h3>Our Courses</h3>
+{% for course in courses %}
+    <h4>{{ course.title }}</h4>
+{% endfor %}
