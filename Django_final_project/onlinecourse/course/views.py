@@ -30,4 +30,4 @@ def unenroll(request,id):
     return HttpResponse("You have successfully unenrolled from the course.")
 def category_list(request):
     categories = Category.objects.all()
-    return render(request, 'courses/category_list.html', {'categories': categories})
+    return render(request, 'courses/courses_list.html', {'categories': categories})
