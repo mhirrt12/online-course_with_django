@@ -1,6 +1,11 @@
 
 <h2 style="text-align: center;color: #181929;">Courses List With Categories</h2>
+<form method="Get">
+   <input type="text" name="q" placeholder="Search courses...">
+   <button type="submit">Search</button>
+</form>
 {% for Category in categories %}
+
 
    <a href="{% url 'category_detail' id=Category.id %}">
        <h3 style="text-align: center;">{{ Category.name }}</h3>
