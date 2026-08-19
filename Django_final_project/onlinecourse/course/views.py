@@ -28,9 +28,15 @@ def unenroll(request,id):
     course.students.remove(request.user)
     return HttpResponse("You have successfully unenrolled from the course.")
 def category_list(request):
+    query=request.GET.get('q')
+    if query:
+        courses=Course.objects.filter(title__icontains=query)
+    else:
+        courses = Course.objects.all()
     categories = Category.objects.all()
-    return render(request, 'courses/courses_list.html', {'categories': categories})
+    return render(request, 'courses/courses_list.html', {'categories': categories, 'courses': courses})
 def category_detail(request, id):
+        
     category = Category.objects.get(id=id)
     courses = Course.objects.filter(category=category)
     return render(request, 'courses/category_detail.html', {'category': category, 'courses': courses})
