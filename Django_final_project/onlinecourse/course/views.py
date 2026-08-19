@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from .models import Course
 
 # Create your views here.
@@ -17,6 +17,7 @@ def enroll(request,id):
     course=Course.objects.get(id=id)
     course.students.add(request.user)
     return HttpResponse("You have successfully enrolled in the course.")
+@login_required
 def mycourse(request):
     courses=request.user.course_set.all()
     return render(request,'courses/enrolled.html',{'mycourse':courses})
