@@ -1,7 +1,7 @@
 
 <h2>Courses List</h2>
 {% for course in courses %}
-   <a href="{% url 'coursedetail' course.id %}"><h3>{{ course.title }}</a></h3>
+   <a href="{% url 'coursedetail' course.id %}"><h3>{{ course.title }} - {{ course.category.name }}</a></h3>
 {% endfor %}
 
 <a href="{%url 'mycourse' %}">my course</a>
