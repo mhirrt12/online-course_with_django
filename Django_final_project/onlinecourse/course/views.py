@@ -1,8 +1,8 @@
 from django.http import HttpResponse
-
-from django.shortcuts import render
+from .forms import ReviewForm
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Course,Category
+from .models import Course,Category,Review
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -14,8 +14,22 @@ def course_list(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'courses/courses2_list.html', {'page_obj': page_obj})
 def coursedetail(request,id):
+    if request.method == 'POST':
+        form=ReviewForm(request.POST)
+        if form.is_valid():
+            review=form.save(commit=False)
+            review.course=Course.objects.get(id=id)
+            review.user=request.user
+            review.save()
+            return redirect('course_detail', id=id)
+        course = Course.objects.get(id=id)
+        rating = request.POST.get('rating')
+        comment = request.POST.get('comment')
+        Review.objects.create(course=course, user=request.user, rating=rating, comment=comment)
+    else:
+        form=ReviewForm()
     course = Course.objects.get(id=id)
-    return render(request,'courses/course_detail.html',{'course':course})
+    return render(request,'courses/course_detail.html',{'course':course, 'form': form})
 @login_required
 def enroll(request,id):
     course=Course.objects.get(id=id)
