@@ -12,7 +12,7 @@ def course_list(request):
     paginator = Paginator(courses, 5)  # Show 5 courses per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'courses/courses_list2.html', {'page_obj': page_obj})
+    return render(request, 'courses/courses2_list.html', {'page_obj': page_obj})
 def coursedetail(request,id):
     course = Course.objects.get(id=id)
     return render(request,'courses/course_detail.html',{'course':course})
