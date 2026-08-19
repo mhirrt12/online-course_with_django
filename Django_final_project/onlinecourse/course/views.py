@@ -31,3 +31,7 @@ def unenroll(request,id):
 def category_list(request):
     categories = Category.objects.all()
     return render(request, 'courses/courses_list.html', {'categories': categories})
+def category_detail(request, id):
+    category = Category.objects.get(id=id)
+    courses = Course.objects.filter(category=category)
+    return render(request, 'courses/category_detail.html', {'category': category, 'courses': courses})
