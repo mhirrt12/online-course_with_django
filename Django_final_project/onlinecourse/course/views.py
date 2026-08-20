@@ -70,7 +70,7 @@ def mark_lesson_completed(request, id):
   if not LessonCompletion.objects.filter(lesson_id=id, user=request.user).exists():
     lesson_obj=lesson.objects.get(id=id)
     LessonCompletion.objects.create(lesson=lesson_obj, user=request.user)
-    course = Course.objects.get(id=id)
+    course = lesson_obj.course
     lessons = lesson.objects.filter(course=course)
         # lesson=lesson.objects.filter(course=course)
     completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson__course=course)
