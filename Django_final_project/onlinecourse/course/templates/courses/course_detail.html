@@ -6,11 +6,12 @@
 <h2>Lessons:</h2>
 <ul>
 {% for lesson in lessons %}
-    <li>LESSON:{{count|add:1}} {{ lesson.title }}
+    <li>LESSON:{{count}} {{ lesson.title }}
          <ul>
             <h5 style="text-decoration: underline;font-size: large;">Content</h5>
             <li>{{ lesson.content }}</li><br /><br />
-            <!-- {{count|add:1}} -->
+            {% with count|add:1 as new_count %}
+            {% endwith %}
          </ul>
     </li>
 {% endfor %}
