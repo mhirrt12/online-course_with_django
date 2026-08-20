@@ -1,4 +1,4 @@
 <h2>lesson detail</h2>
 <p><strong>Title:</strong> {{ lesson.title }}</p>
 <p><strong>Content:</strong> {{ lesson.content }}</p>
-<a href="{% url 'mark_lesson_completed' lesson.id %}"><button type="submit">✅Mark as Completed</button></a>
+<a href="{% url 'mark_lesson_completed' lesson.id %}"><button type="submit" onClick="style:color='green'">✅Mark as Completed</button></a>
