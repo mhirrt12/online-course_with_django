@@ -26,9 +26,9 @@ def coursedetail(request,id):
         form=ReviewForm()
     course = Course.objects.get(id=id)
     lessons = lesson.objects.filter(course=course)
-    lesson2=lesson.objects.filter(course=course)
-    completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson2__course=course)
-    total_lessons = lesson2.count()
+    # lesson=lesson.objects.filter(course=course)
+    completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson__course=course)
+    total_lessons = lessons.count()
     completed_count = completed_lessons.count()
     if total_lessons > 0:
         progress_percentage = (completed_count / total_lessons) * 100
