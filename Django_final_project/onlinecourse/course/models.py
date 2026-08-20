@@ -51,3 +51,10 @@ class LessonCompletion(models.Model):
         name='unique_user_lesson')]
     #  def __str__(self):
     #      return f"{self.user.username} completed {self.lesson.title}"
+class Certificate(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    issued_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Certificate for {self.course.title} - {self.user.username}"
