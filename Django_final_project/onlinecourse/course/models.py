@@ -46,7 +46,7 @@ class LessonCompletion(models.Model):
      completed_at = models.DateTimeField(auto_now_add=True)
      class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['lesson', 'user']
+            models.UniqueConstraint(fields=['user', 'lesson']
         ,
         name='unique_user_lesson')]
     #  def __str__(self):
