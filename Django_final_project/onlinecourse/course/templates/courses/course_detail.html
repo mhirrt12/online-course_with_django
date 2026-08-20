@@ -11,6 +11,9 @@
 {% endfor %}
 </ul>
 <h3>Progress: {{ progress_percentage|floatformat:2 }}%</h3>
+{% if progress_percentage == 100 %}
+    <p>Congratulations! You have completed all lessons in this course.</p>
+{% endif %}
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
