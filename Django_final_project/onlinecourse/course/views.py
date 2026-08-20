@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from .forms import ReviewForm
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course,Category,Review,lesson,LessonCompletion,Certificate
 from django.core.paginator import Paginator
@@ -67,27 +67,52 @@ def lesson_detail(request, id):
     return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
 @login_required
 def mark_lesson_completed(request, id):
-  if not LessonCompletion.objects.filter(lesson_id=id, user=request.user).exists():
-    lesson_obj=lesson.objects.get(id=id)
-    LessonCompletion.objects.create(lesson=lesson_obj, user=request.user)
+
+    # 1. Get the lesson
+    lesson_obj = get_object_or_404(lesson, id=id)
+
+    # 2. Get the course that this lesson belongs to
     course = lesson_obj.course
-    lessons = lesson.objects.filter(course=course)
-        # lesson=lesson.objects.filter(course=course)
-    completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson__course=course)
+
+    # 3. Create completion only if it doesn't already exist
+    LessonCompletion.objects.get_or_create(
+        lesson=lesson_obj,
+        user=request.user
+    )
+
+    # 4. Get all lessons in this course
+    lessons = lesson.objects.filter(
+        course=course
+    )
+
+    # 5. Get lessons completed by this user
+    completed_lessons = LessonCompletion.objects.filter(
+        user=request.user,
+        lesson__course=course
+    )
+
+    # 6. Count them
     total_lessons = lessons.count()
     completed_count = completed_lessons.count()
+
+    # 7. Calculate progress
     if total_lessons > 0:
-        progress_percentage = (completed_count / total_lessons) * 100
+        progress_percentage = (
+            completed_count / total_lessons
+        ) * 100
     else:
         progress_percentage = 0
-    if progress_percentage == 100:
-        # User has completed all lessons in the course, issue a certificate
-        certificate= Certificate.objects.filter(course=course, user=request.user)
-        if not certificate.exists():
-            Certificate.objects.get_or_create(course=course, user=request.user)
+
+    # 8. If all lessons are completed, create certificate
+    if progress_percentage >= 100:
+
+        Certificate.objects.get_or_create(
+            course=course,
+            user=request.user
+        )
+
+    # 9. Return to lesson
     return redirect('lesson_detail', id=id)
-  else:
-    return HttpResponse("You have already completed this lesson.")
 @login_required
 def certificate_detail(request, id):
     certificate = Certificate.objects.get(id=id, user=request.user)
