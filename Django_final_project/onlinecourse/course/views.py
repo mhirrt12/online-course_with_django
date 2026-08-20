@@ -26,8 +26,15 @@ def coursedetail(request,id):
         form=ReviewForm()
     course = Course.objects.get(id=id)
     lessons = lesson.objects.filter(course=course)
-    
-    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons})
+    lesson=lesson.objects.filter(course=course)
+    completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson__course=course)
+    total_lessons = lesson.count()
+    completed_count = completed_lessons.count()
+    if total_lessons > 0:
+        progress_percentage = (completed_count / total_lessons) * 100
+    else:
+        progress_percentage = 0
+    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons, 'progress_percentage': progress_percentage})
 @login_required
 def enroll(request,id):
     course=Course.objects.get(id=id)
