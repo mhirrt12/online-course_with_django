@@ -10,6 +10,7 @@
     </li>
 {% endfor %}
 </ul>
+<h3>Progress: {{ progress_percentage|floatformat:2 }}%</h3>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
