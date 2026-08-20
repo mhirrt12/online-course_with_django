@@ -60,7 +60,9 @@ def lesson_detail(request, id):
     return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
 @login_required
 def mark_lesson_completed(request, id):
-
+  if not LessonCompletion.objects.filter(lesson_id=id, user=request.user).exists():
     lesson_obj=lesson.objects.get(id=id)
     LessonCompletion.objects.create(lesson=lesson_obj, user=request.user)
     return redirect('lesson_detail', id=id)
+  else:
+    return HttpResponse("You have already completed this lesson.")
