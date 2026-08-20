@@ -61,6 +61,6 @@ def lesson_detail(request, id):
 @login_required
 def mark_lesson_completed(request, id):
 
-    lesson=lesson.objects.get(id=id)
-    LessonCompletion.objects.create(lesson=lesson, user=request.user)
+    lesson_obj=lesson.objects.get(id=id)
+    LessonCompletion.objects.create(lesson=lesson_obj, user=request.user)
     return redirect('lesson_detail', id=id)
