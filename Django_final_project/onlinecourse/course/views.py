@@ -66,4 +66,4 @@ def mark_lesson_completed(request, id):
     if not lesson_obj.lessoncompletion_set.filter(user=user).exists():
         # Mark the lesson as completed for the user
         lesson_obj.lessoncompletion_set.create(user=user)
-    return HttpResponse('Lesson marked as completed.')
+    return redirect('course_detail', id=id)
