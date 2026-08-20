@@ -5,7 +5,9 @@
 <p>Created date: {{course.created_at}}</p>
 <h2>Lessons:</h2>
 <ul>
+    {{count=lessons.count}}
 {% for lesson in lessons %}
+
     <li>LESSON: {{ lesson.title }}</li>
 {% endfor %}
 </ul>
