@@ -41,13 +41,13 @@ class lesson(models.Model):
     def __str__(self):
         return self.title
 class LessonCompletion(models.Model):
-    lesson = models.ForeignKey(lesson, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    completed_at = models.DateTimeField(auto_now_add=True)
-    class Meta:
+     lesson = models.ForeignKey(lesson, on_delete=models.CASCADE)
+     user = models.ForeignKey(User, on_delete=models.CASCADE)
+     completed_at = models.DateTimeField(auto_now_add=True)
+     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['lesson', 'user']
         ,
         name='unique_user_lesson')]
-    def __str__(self):
-        return f"{self.user.username} completed {self.lesson.title}"
+     def __str__(self):
+         return f"{self.user.username} completed {self.lesson.title}"
