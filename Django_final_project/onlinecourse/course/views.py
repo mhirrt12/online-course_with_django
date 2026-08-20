@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .forms import ReviewForm
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Course,Category,Review,lesson
+from .models import Course,Category,Review,lesson,LessonCompletion
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -60,10 +60,5 @@ def lesson_detail(request, id):
     return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
 
 def mark_lesson_completed(request, id):
-    lesson_obj = lesson.objects.get(id=id)
-    user = request.user
-    # Check if the user has already completed the lesson
-    if not lesson_obj.lessoncompletion_set.filter(user=user).exists():
-        # Mark the lesson as completed for the user
-        lesson_obj.lessoncompletion_set.create(user=user)
-    return HttpResponse('Congratulations! You have completed the lesson.')
+    LessonCompletion.objects.create(lesson=lesson.objects.get(id=id), user=request.user)
+    return redirect('lesson_detail', id=id)
