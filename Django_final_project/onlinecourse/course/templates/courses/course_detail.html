@@ -6,11 +6,11 @@
 <h2>Lessons:</h2>
 <ul>
 {% for lesson in lessons %}
-    
-    <li>LESSON: {{ lesson.title }}
+    <li>LESSON:{{count|add:1}} {{ lesson.title }}
          <ul>
             <h5 style="text-decoration: underline;font-size: large;">Content</h5>
             <li>{{ lesson.content }}</li><br /><br />
+            <!-- {{count|add:1}} -->
          </ul>
     </li>
 {% endfor %}
