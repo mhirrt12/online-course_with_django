@@ -58,7 +58,7 @@ def category_detail(request, id):
 def lesson_detail(request, id):
     lesson_obj = lesson.objects.get(id=id)
     return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
-
+@login_required
 def mark_lesson_completed(request, id):
     LessonCompletion.objects.create(lesson=lesson.objects.get(id=id), user=request.user)
     return redirect('lesson_detail', id=id)
