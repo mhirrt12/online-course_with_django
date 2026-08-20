@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .forms import ReviewForm
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Course,Category,Review
+from .models import Course,Category,Review,lesson
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -25,7 +25,7 @@ def coursedetail(request,id):
     else:
         form=ReviewForm()
     course = Course.objects.get(id=id)
-    lessons = course.lesson_set.all()
+    lessons = lesson.objects.filter(course=course)
     return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons})
 @login_required
 def enroll(request,id):
