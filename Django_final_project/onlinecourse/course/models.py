@@ -55,6 +55,9 @@ class Certificate(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     issued_at = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'course'], name='unique_user_course')
+        ]
     def __str__(self):
         return f"Certificate for {self.course.title} - {self.user.username}"
