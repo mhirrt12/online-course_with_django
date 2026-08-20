@@ -5,10 +5,10 @@
 <p>Created date: {{course.created_at}}</p>
 <h2>Lessons:</h2>
 <ul>
-    {{count=lessons.count}}
+    {{count=0}}
 {% for lesson in lessons %}
-
-    <li>LESSON: {{ lesson.title }}</li>
+    {{count=count+1}}
+    <li>LESSON {{ count }}: {{ lesson.title }}</li>
 {% endfor %}
 </ul>
 <form method="POST">
