@@ -58,3 +58,12 @@ def category_detail(request, id):
 def lesson_detail(request, id):
     lesson_obj = lesson.objects.get(id=id)
     return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
+
+def mark_lesson_completed(request, id):
+    lesson_obj = lesson.objects.get(id=id)
+    user = request.user
+    # Check if the user has already completed the lesson
+    if not lesson_obj.lessoncompletion_set.filter(user=user).exists():
+        # Mark the lesson as completed for the user
+        lesson_obj.lessoncompletion_set.create(user=user)
+    return redirect('lesson_detail', id=id)
