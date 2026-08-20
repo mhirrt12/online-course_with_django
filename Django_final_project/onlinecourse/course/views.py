@@ -26,8 +26,8 @@ def coursedetail(request,id):
         form=ReviewForm()
     course = Course.objects.get(id=id)
     lessons = lesson.objects.filter(course=course)
-    count=0;
-    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons,'count':count})
+    
+    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons})
 @login_required
 def enroll(request,id):
     course=Course.objects.get(id=id)
