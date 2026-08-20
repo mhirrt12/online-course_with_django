@@ -1,8 +1,14 @@
 
 <h1>Courses detail</h1>
-<h2>Title: {{ course.title }}</a></h2>
+<h3>Title: {{ course.title }}</a></h3>
 <p>Description: {{course.description}}</p>
 <p>Created date: {{course.created_at}}</p>
+<h2>Lessons:</h2>
+<ul>
+{% for lesson in lessons %}
+    <li>{{ lesson.title }}</li>
+{% endfor %}
+</ul>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
