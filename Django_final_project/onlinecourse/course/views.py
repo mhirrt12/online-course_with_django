@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .forms import ReviewForm
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Course,Category,Review,lesson,LessonCompletion
+from .models import Course,Category,Review,lesson,LessonCompletion,Certificate
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -70,6 +70,21 @@ def mark_lesson_completed(request, id):
   if not LessonCompletion.objects.filter(lesson_id=id, user=request.user).exists():
     lesson_obj=lesson.objects.get(id=id)
     LessonCompletion.objects.create(lesson=lesson_obj, user=request.user)
+    course = Course.objects.get(id=id)
+    lessons = lesson.objects.filter(course=course)
+        # lesson=lesson.objects.filter(course=course)
+    completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson__course=course)
+    total_lessons = lessons.count()
+    completed_count = completed_lessons.count()
+    if total_lessons > 0:
+        progress_percentage = (completed_count / total_lessons) * 100
+    else:
+        progress_percentage = 0
+    if progress_percentage == 100:
+        # User has completed all lessons in the course, issue a certificate
+        certificate= Certificate.objects.filter(course=course, user=request.user)
+        if not certificate.exists():
+            Certificate.objects.get_or_create(course=course, user=request.user)
     return redirect('lesson_detail', id=id)
   else:
     return HttpResponse("You have already completed this lesson.")
