@@ -49,5 +49,5 @@ class LessonCompletion(models.Model):
             models.UniqueConstraint(fields=['lesson', 'user']
         ,
         name='unique_user_lesson')]
-     def __str__(self):
-         return f"{self.user.username} completed {self.lesson.title}"
+    #  def __str__(self):
+    #      return f"{self.user.username} completed {self.lesson.title}"
