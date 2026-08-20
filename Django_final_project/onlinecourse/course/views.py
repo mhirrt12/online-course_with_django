@@ -88,3 +88,6 @@ def mark_lesson_completed(request, id):
     return redirect('lesson_detail', id=id)
   else:
     return HttpResponse("You have already completed this lesson.")
+def certificate_detail(request, id):
+    certificate = Certificate.objects.get(id=id)
+    return render(request, 'courses/certificate_detail.html', {'certificate': certificate})
