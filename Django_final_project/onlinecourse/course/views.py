@@ -42,9 +42,43 @@ def enroll(request,id):
     return HttpResponse("You have successfully enrolled in the course.")
 @login_required
 def mycourse(request):
-    courses=request.user.course_set.all()
-    return render(request,'courses/enrolled.html',{'mycourse':courses})
-    # return HttpResponse("You have successfully enrolled in the course.")
+    courses = request.user.course_set.all()
+
+    dashboard_courses = []
+
+    for course in courses:
+
+        lessons = lesson.objects.filter(
+            course=course
+        )
+
+        completed_lessons = LessonCompletion.objects.filter(
+            user=request.user,
+            lesson__course=course
+        )
+
+        total_lessons = lessons.count()
+        completed_count = completed_lessons.count()
+
+        if total_lessons > 0:
+            progress_percentage = (
+                completed_count / total_lessons
+            ) * 100
+        else:
+            progress_percentage = 0
+
+        dashboard_courses.append({
+            'course': course,
+            'progress': progress_percentage
+        })
+
+    return render(
+        request,
+        'courses/enrolled.html',
+        {
+            'dashboard_courses': dashboard_courses
+        }
+    )
 def unenroll(request,id):
     course=Course.objects.get(id=id)
     course.students.remove(request.user)
