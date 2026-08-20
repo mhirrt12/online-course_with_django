@@ -25,7 +25,8 @@ def coursedetail(request,id):
     else:
         form=ReviewForm()
     course = Course.objects.get(id=id)
-    return render(request,'courses/course_detail.html',{'course':course, 'form': form})
+    lessons = course.lesson_set.all()
+    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons})
 @login_required
 def enroll(request,id):
     course=Course.objects.get(id=id)
