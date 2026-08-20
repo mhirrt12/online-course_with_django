@@ -8,7 +8,10 @@
 {% for lesson in lessons %}
     
     <li>LESSON: {{ lesson.title }}
-    
+         <ul>
+            <h5>content</h5>
+            <li>{{ lesson.content }}</li>
+         </ul>
     </li>
 {% endfor %}
 </ul>
