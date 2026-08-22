@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Course(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
     saved_by = models.ManyToManyField(
-    User,
+    User, related_name='saved_courses',
     blank=True
 )
     students =models.ManyToManyField(User)
