@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .forms import ReviewForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Course,Category,Review,lesson,LessonCompletion,Certificate
+from .models import Course,Category,Review,lesson,LessonCompletion,Certificate,Notification 
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -39,6 +39,10 @@ def coursedetail(request,id):
 def enroll(request,id):
     course=Course.objects.get(id=id)
     course.students.add(request.user)
+    Notification.objects.create(
+    user=request.user,
+    message=f"You enrolled in {course.title}!"
+)
     return HttpResponse("You have successfully enrolled in the course.")
 @login_required
 def mycourse(request):
