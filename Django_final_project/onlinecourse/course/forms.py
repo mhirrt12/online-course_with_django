@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, Course
+from .models import Review, Course,lesson
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -12,4 +12,11 @@ class CourseForm(forms.ModelForm):
             'title',
             'description',
             'category',
+        ]
+class LessonForm(forms.ModelForm):
+    class Meta:
+        model = lesson
+        fields = [
+            'title',
+            'content',
         ]
