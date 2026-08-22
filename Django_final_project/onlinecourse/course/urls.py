@@ -20,4 +20,8 @@ urlpatterns = [
     views.notifications,
     name="notifications"
 ),
+    path(
+    "instructor_dashboard/",
+    views.instructor_dashboard,
+    name="instructor_dashboard"),
 ]
