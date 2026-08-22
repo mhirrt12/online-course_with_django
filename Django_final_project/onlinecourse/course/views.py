@@ -225,3 +225,22 @@ def create_course(request):
         'courses/create_course.html',
         {'form': form}
     )
+@login_required
+def edit_course(request, id):
+    course = get_object_or_404(Course, id=id, instructor=request.user)
+
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+
+        if form.is_valid():
+            form.save()
+            return redirect('instructor_dashboard')
+
+    else:
+        form = CourseForm(instance=course)
+
+    return render(
+        request,
+        'courses/edit_course.html',
+        {'form': form}
+    )
