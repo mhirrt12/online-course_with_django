@@ -176,9 +176,17 @@ def saved_courses(request):
     return render(request, 'courses/saved_courses.html', {'courses': courses})
 @login_required
 def notifications(request):
+
     notifications = Notification.objects.filter(
         user=request.user
     ).order_by('-created_at')
+
+    Notification.objects.filter(
+        user=request.user,
+        is_read=False
+    ).update(
+        is_read=True
+    )
 
     return render(
         request,
