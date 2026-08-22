@@ -3,5 +3,6 @@
     <h3>{{ course.title }}</h3>
     <p>{{ course.description }}</p>
     <a href="{% url 'coursedetail' course.id %}">View Course</a>
-
+{%empty %}
+    <p>You haven't saved any courses yet.</p>
 {% endfor %}
