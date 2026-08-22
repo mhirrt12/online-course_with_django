@@ -244,3 +244,13 @@ def edit_course(request, id):
         'courses/edit_course.html',
         {'form': form}
     )
+@login_required
+def delete_course(request, id):
+    course = Course.objects.get(
+        id=id,
+        instructor=request.user
+    )
+
+    course.delete()
+
+    return redirect('instructor_dashboard')
