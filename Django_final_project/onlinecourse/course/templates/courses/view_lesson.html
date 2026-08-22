@@ -1,7 +1,9 @@
 <h2> lessons </h2>
 {% if lesson %}
+  {% for lesson in lesson %}
     <h3>{{ lesson.title }}</h3>
     <p>{{ lesson.description }}</p>
+    {%endfor %}
 {% else %}
     <p>Lesson not found.</p>
 {% endif %} 
