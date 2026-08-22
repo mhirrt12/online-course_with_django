@@ -7,6 +7,11 @@ class Course(models.Model):
     User, related_name='saved_courses',
     blank=True
 )
+    instructor = models.ForeignKey(
+    User,
+    on_delete=models.CASCADE,
+    related_name='created_courses'
+)
     students =models.ManyToManyField(User,related_name='enrolled_courses')
     title = models.CharField(max_length=200)
     description = models.TextField()
