@@ -278,5 +278,5 @@ def create_lesson(request, course_id):
 @login_required
 def view_course_lesson(request, course_id):
     course = Course.objects.get(id=course_id)
-    lesson_obj = course.lesson.all()
+    lesson_obj = course.lessons.all()
     return render(request, 'courses/view_lesson.html', {'lesson': lesson_obj})
