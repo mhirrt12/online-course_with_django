@@ -227,7 +227,7 @@ def create_course(request):
     )
 @login_required
 def edit_course(request, id):
-    course = get_object_or_404(Course, id=id, instructor=request.user)
+    course = Course.objects.get(id=id, instructor=request.user)
 
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
