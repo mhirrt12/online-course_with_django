@@ -151,3 +151,11 @@ def mark_lesson_completed(request, id):
 def certificate_detail(request, id):
     certificate = Certificate.objects.get(id=id, user=request.user)
     return render(request, 'courses/certificate_detail.html', {'certificate': certificate})
+
+@login_required
+def save_course(request, id):
+    course = Course.objects.get(id=id)
+
+    course.saved_by.add(request.user)
+
+    return redirect('coursedetail', id=id)
