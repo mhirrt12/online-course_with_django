@@ -1,0 +1,9 @@
+{% for course in courses %}
+
+    <h2>{{ course.title }}</h2>
+
+{% empty %}
+
+    <p>You haven't created any courses yet.</p>
+
+{% endfor %}
