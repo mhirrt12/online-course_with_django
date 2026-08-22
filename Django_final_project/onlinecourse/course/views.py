@@ -276,6 +276,7 @@ def create_lesson(request, course_id):
         {'form': form, 'course': course}
     )
 @login_required
-def view_lesson(request, lesson_id):
-    lesson_obj = lesson.objects.get(id=lesson_id)
-    return render(request, 'courses/instructor_dashboard.html', {'lesson': lesson_obj})
+def view_course_lesson(request, course_id, lesson_id):
+    course = Course.objects.get(id=course_id)
+    lesson_obj = course.lessons.get(id=lesson_id)
+    return render(request, 'courses/view_lesson.html', {'lesson': lesson_obj})
