@@ -1,5 +1,5 @@
 <h2>saved courses</h2>
-{% for course in saved_courses %}
+{% for course in courses %}
     <h3>{{ course.title }}</h3>
     <p>{{ course.description }}</p>
     <a href="{% url 'coursedetail' course.id %}">View Course</a>
