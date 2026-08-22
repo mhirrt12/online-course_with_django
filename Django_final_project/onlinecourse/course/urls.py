@@ -34,4 +34,9 @@ path(
     views.edit_course,
     name="edit_course"
 ),
+path(
+    "delete-course/<int:id>/",
+    views.delete_course,
+    name="delete_course"
+),
 ]
