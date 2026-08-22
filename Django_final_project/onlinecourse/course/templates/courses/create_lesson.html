@@ -1,0 +1,5 @@
+<h2>create Lesson</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Lesson</button>
