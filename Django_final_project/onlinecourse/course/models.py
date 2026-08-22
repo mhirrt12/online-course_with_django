@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Course(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
+    saved_by = models.ManyToManyField(
+    User,
+    blank=True
+)
     students =models.ManyToManyField(User)
     title = models.CharField(max_length=200)
     description = models.TextField()
