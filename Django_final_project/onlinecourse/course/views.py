@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .forms import ReviewForm, CourseForm
+from .forms import ReviewForm, CourseForm, LessonForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course,Category,Review,lesson,LessonCompletion,Certificate,Notification 
@@ -254,3 +254,24 @@ def delete_course(request, id):
     course.delete()
 
     return redirect('instructor_dashboard')
+@login_required
+def create_lesson(request, course_id):  
+    course = Course.objects.get(id=course_id, instructor=request.user)
+
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+
+        if form.is_valid():
+            lesson = form.save(commit=False)
+            lesson.course = course
+            lesson.save()
+
+            return redirect('lesson_detail', id=lesson.id)
+    else:
+        form = LessonForm()
+
+    return render(
+        request,
+        'courses/create_lesson.html',
+        {'form': form, 'course': course}
+    )
