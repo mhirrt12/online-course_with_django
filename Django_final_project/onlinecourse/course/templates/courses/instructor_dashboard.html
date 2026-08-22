@@ -1,9 +1,10 @@
-<h2>your courses</h2>{% for course in courses %}
+<h1>Your Courses</h1>{% for course in courses %}
 
-    <h2>{{ course.title }}</h2>
+    <h3>{{ course.title }}</h3>
 
 {% empty %}
 
     <p>You haven't created any courses yet.</p>
 
 {% endfor %}
+<button><a href="{% url 'create_course' %}">Create New Course</a></button>
