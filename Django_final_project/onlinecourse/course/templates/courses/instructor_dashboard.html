@@ -10,5 +10,5 @@
 
 {% endfor %}
 <button><a href="{% url 'create_course' %}"> ➕Create New Course</a></button>
-<button><a href="{% url 'create_lesson' %}"> ➕Create New Lesson</a></button>
+<button><a href="{% url 'create_lesson' course.id %}"> ➕Create New Lesson</a></button>
 <br />
