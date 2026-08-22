@@ -10,7 +10,9 @@ class Course(models.Model):
     instructor = models.ForeignKey(
     User,
     on_delete=models.CASCADE,
-    related_name='created_courses'
+    related_name='created_courses',
+    null=True,
+    blank=True
 )
     students =models.ManyToManyField(User,related_name='enrolled_courses')
     title = models.CharField(max_length=200)
