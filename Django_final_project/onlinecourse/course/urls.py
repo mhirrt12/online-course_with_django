@@ -29,4 +29,9 @@ urlpatterns = [
     views.create_course,
     name="create_course"
 ),
+path(
+    "edit-course/<int:id>/",
+    views.edit_course,
+    name="edit_course"
+),
 ]
