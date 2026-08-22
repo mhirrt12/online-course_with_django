@@ -279,4 +279,24 @@ def create_lesson(request, course_id):
 def view_course_lesson(request, course_id):
     course = Course.objects.get(id=course_id)
     lesson_obj = course.lesson_set.all()
-    return render(request, 'courses/instructor_dashboard.html', {'lesson': lesson_obj})
+    return render(request, 'courses/view_lesson.html', {'lesson': lesson_obj})
+@login_required
+def manage_lessons(request, course_id):
+
+    course = Course.objects.get(
+        id=course_id,
+        instructor=request.user
+    )
+
+    lessons = lesson.objects.filter(
+        course=course
+    )
+
+    return render(
+        request,
+        'courses/manage_lessons.html',
+        {
+            'course': course,
+            'lessons': lessons
+        }
+    )
