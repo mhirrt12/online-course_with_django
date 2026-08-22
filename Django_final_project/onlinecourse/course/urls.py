@@ -24,4 +24,9 @@ urlpatterns = [
     "instructor_dashboard/",
     views.instructor_dashboard,
     name="instructor_dashboard"),
+    path(
+    "create-course/",
+    views.create_course,
+    name="create_course"
+),
 ]
