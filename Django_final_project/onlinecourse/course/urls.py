@@ -15,4 +15,9 @@ urlpatterns = [
     path("save_course/<int:id>/", views.save_course, name='save_course'),
     path("unsave_course/<int:id>/", views.unsave_course, name='unsave_course'),
     path("saved_courses/", views.saved_courses, name='saved_courses'),
+    path(
+    "notifications/",
+    views.notifications,
+    name="notifications"
+),
 ]
