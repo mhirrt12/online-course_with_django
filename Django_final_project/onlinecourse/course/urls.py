@@ -44,7 +44,7 @@ path(
     views.create_lesson,
     name="create_lesson"
 ),path(
-    "view-lesson/<int:course_id>/<int:lesson_id>/",
+    "view-lesson/<int:course_id>/",
     views.view_course_lesson,
     name="view_course_lesson")
 ]
