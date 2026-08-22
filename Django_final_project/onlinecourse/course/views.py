@@ -166,3 +166,7 @@ def unsave_course(request, id):
     course.saved_by.remove(request.user)
 
     return redirect('coursedetail', id=id)
+@login_required
+def saved_courses(request):
+    courses = request.user.saved_courses.all()
+    return render(request, 'courses/saved_courses.html', {'courses': courses})
