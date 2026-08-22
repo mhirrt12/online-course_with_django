@@ -159,3 +159,10 @@ def save_course(request, id):
     course.saved_by.add(request.user)
 
     return redirect('coursedetail', id=id)
+@login_required
+def unsave_course(request, id):
+    course = Course.objects.get(id=id)
+
+    course.saved_by.remove(request.user)
+
+    return redirect('coursedetail', id=id)
