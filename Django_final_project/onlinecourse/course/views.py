@@ -266,7 +266,7 @@ def create_lesson(request, course_id):
             lesson.course = course
             lesson.save()
 
-            return redirect('lesson_detail', id=lesson.id)
+            return redirect('instructor_dashboard')
     else:
         form = LessonForm()
 
