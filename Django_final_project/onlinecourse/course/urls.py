@@ -14,4 +14,5 @@ urlpatterns = [
     path("certificate/<int:id>/", views.certificate_detail, name='certificate_detail'),
     path("save_course/<int:id>/", views.save_course, name='save_course'),
     path("unsave_course/<int:id>/", views.unsave_course, name='unsave_course'),
+    path("saved_courses/", views.saved_courses, name='saved_courses'),
 ]
