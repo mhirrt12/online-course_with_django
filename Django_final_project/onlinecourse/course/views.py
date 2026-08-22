@@ -193,3 +193,13 @@ def notifications(request):
         'courses/notifications.html',
         {'notifications': notifications}
     )
+    
+@login_required
+def instructor_dashboard(request):
+    courses = request.user.created_courses.all()
+    
+    return render(
+        request,
+        'courses/instructor_dashboard.html',
+        {'courses': courses}
+    )
