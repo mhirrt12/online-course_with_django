@@ -1,6 +1,7 @@
 <h1>Your Courses</h1>{% for course in courses %}
 
     <h3>{{ course.title }}</h3>
+   <a href="{%url 'edit_course' course.id%}" <button >edit course</button>
 
 {% empty %}
 
@@ -8,3 +9,4 @@
 
 {% endfor %}
 <button><a href="{% url 'create_course' %}"> ➕Create New Course</a></button>
+<br />
