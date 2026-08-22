@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .forms import ReviewForm
+from .forms import ReviewForm, CourseForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course,Category,Review,lesson,LessonCompletion,Certificate,Notification 
@@ -202,4 +202,26 @@ def instructor_dashboard(request):
         request,
         'courses/instructor_dashboard.html',
         {'courses': courses}
+    )
+    
+@login_required
+def create_course(request):
+
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.instructor = request.user
+            course.save()
+
+            return redirect('instructor_dashboard')
+
+    else:
+        form = CourseForm()
+
+    return render(
+        request,
+        'courses/create_course.html',
+        {'form': form}
     )
