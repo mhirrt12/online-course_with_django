@@ -42,7 +42,7 @@ def enroll(request,id):
     return HttpResponse("You have successfully enrolled in the course.")
 @login_required
 def mycourse(request):
-    courses = request.user.course_set.all()
+    courses = request.user.enrolled_courses.all()
 
     dashboard_courses = []
 
