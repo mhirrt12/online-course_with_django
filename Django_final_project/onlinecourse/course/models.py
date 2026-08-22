@@ -7,7 +7,7 @@ class Course(models.Model):
     User, related_name='saved_courses',
     blank=True
 )
-    students =models.ManyToManyField(User)
+    students =models.ManyToManyField(User,related_name='enrolled_courses')
     title = models.CharField(max_length=200)
     description = models.TextField()
     # enroll=models.BooleanField()
