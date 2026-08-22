@@ -174,3 +174,14 @@ def unsave_course(request, id):
 def saved_courses(request):
     courses = request.user.saved_courses.all()
     return render(request, 'courses/saved_courses.html', {'courses': courses})
+@login_required
+def notifications(request):
+    notifications = Notification.objects.filter(
+        user=request.user
+    )
+
+    return render(
+        request,
+        'courses/notifications.html',
+        {'notifications': notifications}
+    )
