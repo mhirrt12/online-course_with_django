@@ -48,7 +48,7 @@ def coursedetail(request,id):
 ).aggregate(
     Avg('rating')
 )['rating__avg']
-    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons, 'progress_percentage': progress_percentage,'average_rating': average_rating})
+    return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons, 'progress_percentage': progress_percentage,'average_rating': average_rating, 'review_count': review_count})
 @login_required
 def enroll(request,id):
     course=Course.objects.get(id=id)
