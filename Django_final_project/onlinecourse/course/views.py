@@ -317,3 +317,8 @@ def edit_lesson(request, lesson_id):
         'courses/edit_lesson.html',
         {'form': form, 'lesson': lesson_obj}
     )
+def delete_lesson(request, lesson_id):
+    lesson_obj = lesson.objects.get(id=lesson_id)
+    course_id = lesson_obj.course.id
+    lesson_obj.delete()
+    return redirect('view_course_lesson', course_id=course_id)
