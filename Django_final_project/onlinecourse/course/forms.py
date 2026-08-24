@@ -3,12 +3,22 @@ from .models import Review, Course,lesson
 
 class ReviewForm(forms.ModelForm):
 
+    rating = forms.ChoiceField(
+        choices=[
+            (1, '⭐'),
+            (2, '⭐⭐'),
+            (3, '⭐⭐⭐'),
+            (4, '⭐⭐⭐⭐'),
+            (5, '⭐⭐⭐⭐⭐'),
+        ],
+        widget=forms.RadioSelect
+    )
+
     class Meta:
         model = Review
         fields = ['rating', 'comment']
 
         widgets = {
-            'rating': forms.RadioSelect,
             'comment': forms.Textarea(attrs={
                 'placeholder': 'Write your review...'
             }),
