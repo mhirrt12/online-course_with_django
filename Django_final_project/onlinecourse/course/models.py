@@ -39,7 +39,13 @@ class Review(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    class Meta:
+     constraints = [
+        models.UniqueConstraint(
+            fields=['course', 'user'],
+            name='unique_course_review'
+        )
+     ]
     def __str__(self):
         return f"Review for {self.course.title} by {self.user.username}"
 class lesson(models.Model):
