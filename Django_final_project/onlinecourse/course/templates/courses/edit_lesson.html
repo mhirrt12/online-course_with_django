@@ -1,0 +1,6 @@
+<h2> Edit the lesson </h2>
+<form method="POST">
+ {%csrf_token%}
+ {{form.as_p}}
+ <button type="submit">Update Lesson</button>
+</form>
