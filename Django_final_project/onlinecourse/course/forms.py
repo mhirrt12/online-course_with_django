@@ -2,9 +2,17 @@ from django import forms
 from .models import Review, Course,lesson
 
 class ReviewForm(forms.ModelForm):
+
     class Meta:
         model = Review
         fields = ['rating', 'comment']
+
+        widgets = {
+            'rating': forms.RadioSelect,
+            'comment': forms.Textarea(attrs={
+                'placeholder': 'Write your review...'
+            }),
+        }
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
