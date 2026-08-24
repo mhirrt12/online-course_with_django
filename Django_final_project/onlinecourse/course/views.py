@@ -40,6 +40,9 @@ def coursedetail(request,id):
         progress_percentage = (completed_count / total_lessons) * 100
     else:
         progress_percentage = 0
+    review_count = Review.objects.filter(
+    course=course
+).count()
     average_rating = Review.objects.filter(
     course=course
 ).aggregate(
