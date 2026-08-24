@@ -5,7 +5,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Course,Category,Review,lesson,LessonCompletion,Certificate,Notification 
 from django.core.paginator import Paginator
 # Create your views here.
-
+def instructor_required(view_func):
+    def wrapper(request,*args,**kwargs):
+        if request.user.profile.role != 'instructor':
+            return HttpResponseForbidden("only instructor can access this page.")
+        return view_func(request,*args,**kwargs)
+    return wrapper
 def course_list(request):
     # Logic to retrieve courses from the database
     courses = Course.objects.all()
@@ -195,6 +200,7 @@ def notifications(request):
     )
     
 @login_required
+@instructor_required
 def instructor_dashboard(request):
     courses = request.user.created_courses.all()
     
@@ -322,10 +328,5 @@ def delete_lesson(request, lesson_id):
     course_id = lesson_obj.course.id
     lesson_obj.delete()
     return redirect('view_course_lesson', course_id=course_id)
-def instructor_required(view_func):
-    def wrapper(request,*args,**kwargs):
-        if request.user.profile.role != 'instructor':
-            return HttpResponseForbidden("only instructor can access this page.")
-        return view_func(request,*args,**kwargs)
-    return wrapper
+
         
