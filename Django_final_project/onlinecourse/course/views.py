@@ -300,3 +300,20 @@ def manage_lessons(request, course_id):
             'lessons': lessons
         }
     )
+def edit_lesson(request, lesson_id):
+    lesson_obj = lesson.objects.ge( id=lesson_id)
+
+    if request.method == 'POST':
+        form = LessonForm(request.POST, instance=lesson_obj)
+
+        if form.is_valid():
+            form.save()
+            return redirect('view_course_lesson', course_id=lesson_obj.course.id)
+    else:
+        form = LessonForm(instance=lesson_obj)
+
+    return render(
+        request,
+        'courses/edit_lesson.html',
+        {'form': form, 'lesson': lesson_obj}
+    )
