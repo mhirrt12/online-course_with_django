@@ -40,6 +40,11 @@ def coursedetail(request,id):
         progress_percentage = (completed_count / total_lessons) * 100
     else:
         progress_percentage = 0
+    average_rating = Review.objects.filter(
+    course=course
+).aggregate(
+    Avg('rating')
+)['rating__avg']
     return render(request,'courses/course_detail.html',{'course':course, 'form': form,'lessons':lessons, 'progress_percentage': progress_percentage})
 @login_required
 def enroll(request,id):
