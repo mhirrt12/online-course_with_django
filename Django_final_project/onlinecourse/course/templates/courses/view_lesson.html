@@ -4,6 +4,8 @@
     <h3>{{ lesson.title }}</h3>
     <p>{{ lesson.description }}</p>
     <button><a href="{% url 'edit_lesson' lesson.id %}">Edit Lesson</a></button>
+    <br /><br />
+    <button ><a href="{% url 'delete_lesson' lesson.id %}">Delete Lesson</a></button>
     {%endfor %}
 {% else %}
     <p>Lesson not found.</p>
