@@ -47,4 +47,5 @@ path(
     "view-lesson/<int:course_id>/",
     views.view_course_lesson,
     name="view_course_lesson")
+,path("edit-lesson/<int:lesson_id>/", views.edit_lesson, name="edit_lesson"),
 ]
