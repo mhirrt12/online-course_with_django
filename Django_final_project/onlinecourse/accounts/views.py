@@ -34,8 +34,10 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
-
+            if user.profile.role == 'instructor':
+                return redirect('instructor_dashboard')
+            else:
+                return redirect('student_dashboard')
         return render(
             request,
             'accounts/login.html',
