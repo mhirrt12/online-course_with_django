@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponseForbidden,HttpResponse
 from .forms import ReviewForm, CourseForm, LessonForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -322,3 +322,10 @@ def delete_lesson(request, lesson_id):
     course_id = lesson_obj.course.id
     lesson_obj.delete()
     return redirect('view_course_lesson', course_id=course_id)
+def instructor_required(view_func):
+    def wrapper(request,*args,**kwargs):
+        if request.user.profile.role != 'instructor':
+            return HttpResponseForbidden("only instructor can access this page.")
+        return view_func(request,*args,**kwargs)
+    return wrapper
+        
