@@ -7,3 +7,6 @@
 {% else %}
     <p>Lesson not found.</p>
 {% endif %} 
+<button><a href="{% url 'create_lesson' course_id %}"> ➕Create New Lesson</a></button><br /><br />
+<button><a href="{% url 'instructor_dashboard' %}">Back to Dashboard</a></button>
+<button><a href="{% url 'edit_lesson' lesson.id %}">Edit Lesson</a></button>
