@@ -358,7 +358,7 @@ def delete_review(request,review_id):
     return redirect("coursedetail",id=review.course.id)
 def course_search(request):
     query =request.GET.get('get')
-    course= Course.objects.all()
+    courses= Course.objects.all()
     if query:
         courses=course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
     return render(request,'courses/courses_search.html',{'courses':courses,'query':query})
