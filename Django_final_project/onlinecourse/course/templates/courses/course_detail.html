@@ -18,13 +18,13 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit Review</button>
-    <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
+    
 </form>
 {% if average_rating %}
     <p>
         ⭐ {{ average_rating|floatformat:1 }} / 5
     </p>
-
+ <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
     <p>
         Based on {{ review_count }} reviews
     </p>
