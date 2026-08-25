@@ -41,6 +41,7 @@
  {%if review.user == request.user %}
   <br >
   <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a><br /><br />
+   <a href="{% url 'delete_review' review.id %}"><button>delete your review</button></a><br /><br />
   {%endif%}
 {%endfor%}
   
