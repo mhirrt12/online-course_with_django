@@ -31,8 +31,12 @@
 {% else %}
     <p>No ratings yet.</p>
 {% endif %} 
-{% for rewiew in reviews%}
- {%if review.user == request.user%}
+<hr>
+<h2>Reviews</h2>
+
+{% for review in reviews%}
+      {{review.rating}}
+ {%if review.user == request.user %}
   <br >
   <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
   {%endif%}
