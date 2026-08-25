@@ -345,3 +345,6 @@ def edit_review(request,id):
         if form.is_valid():
             form.save()
             return redirect("coursedetail",id=review.course.id)
+        else :
+            form=ReviewForm(instance=review)
+            return render(request,'courses/edit_review.html',{'form':form,'review':review})
