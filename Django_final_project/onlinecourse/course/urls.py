@@ -49,5 +49,5 @@ path(
     name="view_course_lesson")
 ,path("edit-lesson/<int:lesson_id>/", views.edit_lesson, name="edit_lesson"),
 path("delete-lesson/<int:lesson_id>/", views.delete_lesson, name="delete_lesson"),
-path("edit-review/<int:review_id>/",views.edit_review ,name="edit_review"),
+path("edit_review/<int:review_id>/",views.edit_review ,name="edit_review"),
 ]
