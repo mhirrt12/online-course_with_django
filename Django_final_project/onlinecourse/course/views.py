@@ -105,7 +105,7 @@ def unenroll(request,id):
 def category_list(request):
        query=request.GET.get('q')
        if query:
-        courses=course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
+        courses=Course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
         return render(request, 'courses/search_list.html', {'courses': courses})
        else:
         categories = Category.objects.all()
@@ -356,9 +356,9 @@ def delete_review(request,review_id):
     review=Review.objects.get(id=review_id,user=request.user)
     review.delete()
     return redirect("coursedetail",id=review.course.id)
-def course_search(request):
-    query =request.GET.get('get')
-    courses= Course.objects.all()
-    if query:
-        courses=course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
-    return render(request,'courses/courses_search.html',{'courses':courses,'query':query})
+# def course_search(request):
+#     query =request.GET.get('get')
+#     courses= Course.objects.all()
+#     if query:
+#         courses=course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
+#     return render(request,'courses/courses_search.html',{'courses':courses,'query':query})
