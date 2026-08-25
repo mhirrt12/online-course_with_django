@@ -349,3 +349,9 @@ def edit_review(request,review_id):
     else :
             form=ReviewForm(instance=review)
     return render(request,'courses/edit_review.html',{'form':form,'review':review})
+  
+
+@login_required
+def delete_review(request,review_id):
+    review=Review.objects.get(id=review_id,user=request.user)
+    
