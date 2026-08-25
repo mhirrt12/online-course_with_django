@@ -337,5 +337,7 @@ def delete_lesson(request, lesson_id):
     course_id = lesson_obj.course.id
     lesson_obj.delete()
     return redirect('view_course_lesson', course_id=course_id)
-
-        
+@login_required  
+def edit_view(request,id):
+    review=Review.objects.get(id=id,user=request.user)
+    form=ReviewForm(request.POST, instance=review)
