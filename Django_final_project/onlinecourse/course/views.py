@@ -354,4 +354,6 @@ def edit_review(request,review_id):
 @login_required
 def delete_review(request,review_id):
     review=Review.objects.get(id=review_id,user=request.user)
+    review.delete()
+    return redirect("coursedetail",id=review.course.id)
     
