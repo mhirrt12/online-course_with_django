@@ -105,7 +105,7 @@ def unenroll(request,id):
 def category_list(request):
        query=request.GET.get('q')
        if query:
-        courses=Course.objects.filter(title__icontains=query)
+        courses=course.filter(Q(title__icontains=query)|Q(descriptin__icontains=query))
         return render(request, 'courses/search_list.html', {'courses': courses})
        else:
         categories = Category.objects.all()
