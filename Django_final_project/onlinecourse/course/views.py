@@ -104,7 +104,6 @@ def unenroll(request,id):
     return HttpResponse("You have successfully unenrolled from the course.")
 def category_list(request):
        query=request.GET.get('q')
-    #    courses=objects.
        if query:
         courses=Course.objects.filter(Q(title__icontains=query)|Q(description__icontains=query))
         return render(request, 'courses/search_list.html', {'courses': courses})
