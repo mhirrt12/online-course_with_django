@@ -340,4 +340,8 @@ def delete_lesson(request, lesson_id):
 @login_required  
 def edit_review(request,id):
     review=Review.objects.get(id=id,user=request.user)
-    form=ReviewForm(request.POST, instance=review)
+    if request.method=="POST":
+        form=ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect("coursedetail",id=review.course.id)
