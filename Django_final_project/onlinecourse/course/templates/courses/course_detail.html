@@ -18,6 +18,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit Review</button>
+    <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
 </form>
 {% if average_rating %}
     <p>
@@ -30,7 +31,7 @@
 {% else %}
     <p>No ratings yet.</p>
 {% endif %} 
-<a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
+
 <a href="{%url 'enroll' course.id%}" <button type="submit ">Enroll now </button>
 </a><br />
 <a href="{% url 'save_course' course.id %}">
