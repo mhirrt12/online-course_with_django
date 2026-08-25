@@ -37,9 +37,10 @@
 {% for review in reviews%}
      <h3>Rating:{{review.rating}}</h3> 
      <h3>Reviwer:{{review.user.username}}</h3>
+     <small>{{review.created_at}}</small><br />
  {%if review.user == request.user %}
   <br >
-  <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a>
+  <a href="{% url 'edit_review' review.id %}"><button>edit your review</button></a><br /><br />
   {%endif%}
 {%endfor%}
   
