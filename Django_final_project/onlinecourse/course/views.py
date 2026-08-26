@@ -367,3 +367,12 @@ def delete_review(request,review_id):
     review=Review.objects.get(id=review_id,user=request.user)
     review.delete()
     return redirect("coursedetail",id=review.course.id)
+@login_required
+def my_learning(request):
+    courses = request.user.course_set.all()
+
+    return render(
+        request,
+        'course/my_learning.html',
+        {'courses': courses}
+    )
