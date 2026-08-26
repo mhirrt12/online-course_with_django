@@ -422,6 +422,6 @@ def certificate_view(request, course_id):
 
     return render(
         request,
-        'course/certificate.html',
+        'courses/certificate.html',
         {'certificate': certificate}
     )
