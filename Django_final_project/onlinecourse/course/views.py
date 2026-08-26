@@ -404,6 +404,8 @@ def my_learning(request):
             'completed_lessons': completed_lessons,
             'progress': progress,
             'remaining_lessons':remaining_lessons,
+                'completed': completed_lessons == total_lessons and total_lessons > 0,
+               'certificate': certificate,
         })
         certificate = None
 
