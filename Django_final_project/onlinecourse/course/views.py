@@ -399,6 +399,6 @@ def my_learning(request):
 
     return render(
         request,
-        'course/my_learning.html',
+        'courses/my_learning.html',
         {'course_progress': course_progress}
     )
