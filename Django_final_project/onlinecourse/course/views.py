@@ -373,7 +373,7 @@ def my_learning(request):
     course_progress=[]
     for course in courses:
         total_lessons=lesson.objects.filter(course=course).count()
-        completed_lessons = LessonCompletion.objects.filter(user=request.user, course=course).count()
+        completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson_course=course).count()
         
         if total_lessons>0:
             progress=(completed_lessons/ total_lessons) * 100
