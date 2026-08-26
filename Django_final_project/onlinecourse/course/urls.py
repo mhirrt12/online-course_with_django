@@ -52,4 +52,9 @@ path(
 path("delete-lesson/<int:lesson_id>/", views.delete_lesson, name="delete_lesson"),
 path("edit_review/<int:review_id>/",views.edit_review ,name="edit_review"),
 path("delete_review/<int:review_id>/",views.delete_review,name="delete_review"),
+path(
+    'my-learning/',
+    views.my_learning,
+    name='my_learning'
+),
 ]
