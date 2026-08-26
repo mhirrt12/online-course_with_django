@@ -115,9 +115,20 @@ def category_detail(request, id):
     category = Category.objects.get(id=id)
     courses = Course.objects.filter(category=category)
     return render(request, 'courses/category_detail.html', {'category': category, 'courses': courses})
+@login_required
 def lesson_detail(request, id):
     lesson_obj = lesson.objects.get(id=id)
-    return render(request, 'courses/lesson_detail.html', {'lesson': lesson_obj})
+
+    if request.user not in lesson_obj.course.students.all():
+        return HttpResponseForbidden(
+            "You must enroll in this course first."
+        )
+
+    return render(
+        request,
+        'courses/lesson_detail.html',
+        {'lesson': lesson_obj}
+    )
 @login_required
 def mark_lesson_completed(request, id):
 
