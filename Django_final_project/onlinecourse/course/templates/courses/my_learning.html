@@ -6,6 +6,9 @@
     <h3>TotalLessons: {{progress.total_lessons }}</h3>
     <h3>CompletedLessons: {{progress.completed_lessons }}</h3>
     <h3>Progress: {{progress.progress }}</h3>
+    {% if {{progress.total_lessons >0}} && {{progress.completed_lessons < progress.total_lessons}}%} 
+      <h3>You Left {{progress.total.lessons-progress.completed_lessons}}</h3>
+    {%endif%}
 </div>
 {% empty %}
     <p>You haven't enrolled in any courses yet.</p>
