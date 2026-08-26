@@ -158,6 +158,12 @@ def mark_lesson_completed(request, id):
     # 6. Count them
     total_lessons = lessons.count()
     completed_count = completed_lessons.count()
+    if total_lessons > 0 and completed_count == total_lessons:
+
+     Certificate.objects.get_or_create(
+        user=request.user,
+        course=course
+    )
 
     # 7. Calculate progress
     if total_lessons > 0:
