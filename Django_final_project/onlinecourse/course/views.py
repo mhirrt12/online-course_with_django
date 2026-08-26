@@ -372,8 +372,14 @@ def my_learning(request):
     courses = request.user.enrolled_courses.all()
     course_progress=[]
     for course in courses:
-        total_lesson=lesson.objects.filter(course=course).count()
+        total_lessons=lesson.objects.filter(course=course).count()
         completed_lesson = LessonCompletion.objects.filter(user=request.user, course=course).count()
+        
+        if total_lessons>0:
+            progress=(completed_lesson/ total_lessons) * 100
+        else:
+            progress=0
+        course_progress.appemd({'course':course,'total_lessons':total_lessons})
     return render(
         request,
         'courses/my_learning.html',
