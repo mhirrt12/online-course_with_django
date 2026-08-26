@@ -11,7 +11,7 @@
     {%endif%}
     {% if progress.completed%}
      <h4 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Congratulation 🥳🥳 you completed full <span style="color: rgb(69, 69, 130);">{{progress.course}} </span> course celebrate you win </h4>
-     <h5>Your certeficate: <a href="{% url 'certificate' certififcate.id %}">SEE</a></h5>
+     <h5>Your certeficate: <a href="{% url 'certificate' progress.certififcate.id %}">SEE</a></h5>
      {%endif%}
 </div>
 {% empty %}
