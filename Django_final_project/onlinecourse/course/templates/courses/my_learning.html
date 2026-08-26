@@ -1,10 +1,12 @@
 <h1>My Learning</h1>
 
 {% for progress in course_progress %}
+<div style="border: 1px dashed rgb(53, 53, 118);border-radius: 30px;">
     <h2>CourseName:{{progress.course}}</h2>
     <h3>TotalLessons: {{progress.total_lessons }}</h3>
     <h3>CompletedLessons: {{progress.completed_lessons }}</h3>
     <h3>Progress: {{progress.progress }}</h3>
+</div>
 {% empty %}
     <p>You haven't enrolled in any courses yet.</p>
 {% endfor %}
