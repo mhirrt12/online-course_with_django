@@ -397,7 +397,13 @@ def my_learning(request):
             progress = 0
             
         remaining_lessons = total_lessons - completed_lessons
-
+        certificate = None
+        
+        if completed_lessons == total_lessons and total_lessons > 0:
+                   certificate = Certificate.objects.filter(
+                             user=request.user,
+                                 course=course
+                                   ).first()
         course_progress.append({
             'course': course,
             'total_lessons': total_lessons,
@@ -407,13 +413,7 @@ def my_learning(request):
                 'completed': completed_lessons == total_lessons and total_lessons > 0,
                'certificate': certificate,
         })
-        certificate = None
-
-        if completed_lessons == total_lessons and total_lessons > 0:
-           certificate = Certificate.objects.filter(
-                     user=request.user,
-                         course=course
-                           ).first()
+       
     return render(
         request,
         'courses/my_learning.html',
