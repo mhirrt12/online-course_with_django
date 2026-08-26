@@ -370,7 +370,10 @@ def delete_review(request,review_id):
 @login_required
 def my_learning(request):
     courses = request.user.enrolled_courses.all()
-
+    course_progress=[]
+    for course in courses:
+        total_lesson=lesson.objects.filter(course=course).count()
+        completed_lesson = LessonCompletion.objects.filter(user=request.user, course=course).count()
     return render(
         request,
         'courses/my_learning.html',
