@@ -5,10 +5,13 @@
     <h2>CourseName:{{progress.course}}</h2>
     <h3>TotalLessons: {{progress.total_lessons }}</h3>
     <h3>CompletedLessons: {{progress.completed_lessons }}</h3>
-    <h3>Progress: {{progress.progress }}</h3>
+    <h3>Progress: {{progress.progress }}%</h3>
     {% if progress.total_lessons > 0 and  progress.completed_lessons <  progress.total_lessons %} 
       <h3>You Left:<span style="font-size: smaller;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">{{progress.remaining_lessons}} from {{progress.total_lessons}} Lessons keep going👍🥰👍</span> </h3>
     {%endif%}
+    {%if progress.progress == 100 %}
+     <h4>Congratulation 🥳🥳you completed fullcourse celebrate you win </h4>
+     {%endif%}
 </div>
 {% empty %}
     <p>You haven't enrolled in any courses yet.</p>
