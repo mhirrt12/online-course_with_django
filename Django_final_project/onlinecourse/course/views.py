@@ -415,9 +415,10 @@ def my_learning(request):
 def certificate_view(request, course_id):
 
     certificate = Certificate.objects.get(
-        user=request.user,
-        course_id=course_id
+       id=course_id, user=request.user
+        
     )
+  
 
     return render(
         request,
