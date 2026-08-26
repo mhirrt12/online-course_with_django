@@ -1,7 +1,8 @@
 <h1>My Learning</h1>
 
 {% for progress in course_progress %}
-    <h3>{{ progress }}</h3>
+    <h2>CourseName:{{progress.course}}</h2>
+    <h3>total_lessons{{ progress }}</h3>
 {% empty %}
     <p>You haven't enrolled in any courses yet.</p>
 {% endfor %}
