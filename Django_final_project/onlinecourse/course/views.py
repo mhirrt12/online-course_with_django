@@ -369,19 +369,36 @@ def delete_review(request,review_id):
     return redirect("coursedetail",id=review.course.id)
 @login_required
 def my_learning(request):
+
     courses = request.user.enrolled_courses.all()
-    course_progress=[]
+
+    course_progress = []
+
     for course in courses:
-        total_lessons=lesson.objects.filter(course=course).count()
-        completed_lessons = LessonCompletion.objects.filter(user=request.user, lesson_course=course).count()
-        
-        if total_lessons>0:
-            progress=(completed_lessons/ total_lessons) * 100
+
+        total_lessons = lesson.objects.filter(
+            course=course
+        ).count()
+
+        completed_lessons = LessonCompletion.objects.filter(
+            user=request.user,
+            lesson__course=course
+        ).count()
+
+        if total_lessons > 0:
+            progress = (completed_lessons / total_lessons) * 100
         else:
-            progress=0
-        course_progress.appemd({'course':course,'total_lessons':total_lessons,'completed_lessons':completed_lessons,'progress':progress,})
+            progress = 0
+
+        course_progress.append({
+            'course': course,
+            'total_lessons': total_lessons,
+            'completed_lessons': completed_lessons,
+            'progress': progress,
+        })
+
     return render(
         request,
-        'courses/my_learning.html',
+        'course/my_learning.html',
         {'course_progress': course_progress}
     )
