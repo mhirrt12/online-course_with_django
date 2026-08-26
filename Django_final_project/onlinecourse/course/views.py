@@ -389,12 +389,15 @@ def my_learning(request):
             progress = (completed_lessons / total_lessons) * 100
         else:
             progress = 0
+            
+        remaining_lessons = total_lessons - completed_lessons
 
         course_progress.append({
             'course': course,
             'total_lessons': total_lessons,
             'completed_lessons': completed_lessons,
             'progress': progress,
+            'remaining_lessons':remaining_lessons,
         })
 
     return render(
