@@ -56,5 +56,9 @@ path(
     'my-learning/',
     views.my_learning,
     name='my_learning'
+),path(
+    'certificate/<int:course_id>/',
+    views.certificate_view,
+    name='certificate'
 ),
 ]
