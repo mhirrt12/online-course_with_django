@@ -405,3 +405,16 @@ def my_learning(request):
         'courses/my_learning.html',
         {'course_progress': course_progress}
     )
+@login_required
+def certificate_view(request, course_id):
+
+    certificate = Certificate.objects.get(
+        user=request.user,
+        course_id=course_id
+    )
+
+    return render(
+        request,
+        'course/certificate.html',
+        {'certificate': certificate}
+    )
