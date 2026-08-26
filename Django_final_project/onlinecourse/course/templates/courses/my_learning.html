@@ -10,7 +10,7 @@
       <h3>You Left:<span style="font-size: smaller;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">{{progress.remaining_lessons}} from {{progress.total_lessons}} Lessons keep going👍🥰👍</span> </h3>
     {%endif%}
     {%if progress.progress == 100 %}
-     <h4>Congratulation 🥳🥳you completed fullcourse celebrate you win </h4>
+     <h4 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Congratulation 🥳🥳 you completed full <span style="color: rgb(69, 69, 130);">{{progress.course}} </span> course celebrate you win </h4>
      {%endif%}
 </div>
 {% empty %}
