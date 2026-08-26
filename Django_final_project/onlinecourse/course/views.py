@@ -369,7 +369,7 @@ def delete_review(request,review_id):
     return redirect("coursedetail",id=review.course.id)
 @login_required
 def my_learning(request):
-    courses = request.user.course_set.all()
+    courses = request.user.enrolled_courses.all()
 
     return render(
         request,
