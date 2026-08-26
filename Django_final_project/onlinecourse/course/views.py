@@ -405,7 +405,13 @@ def my_learning(request):
             'progress': progress,
             'remaining_lessons':remaining_lessons,
         })
+        certificate = None
 
+        if completed_lessons == total_lessons and total_lessons > 0:
+           certificate = Certificate.objects.filter(
+                     user=request.user,
+                         course=course
+                           ).first()
     return render(
         request,
         'courses/my_learning.html',
