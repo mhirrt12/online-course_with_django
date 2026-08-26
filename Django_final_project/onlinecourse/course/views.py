@@ -373,15 +373,15 @@ def my_learning(request):
     course_progress=[]
     for course in courses:
         total_lessons=lesson.objects.filter(course=course).count()
-        completed_lesson = LessonCompletion.objects.filter(user=request.user, course=course).count()
+        completed_lessons = LessonCompletion.objects.filter(user=request.user, course=course).count()
         
         if total_lessons>0:
-            progress=(completed_lesson/ total_lessons) * 100
+            progress=(completed_lessons/ total_lessons) * 100
         else:
             progress=0
-        course_progress.appemd({'course':course,'total_lessons':total_lessons})
+        course_progress.appemd({'course':course,'total_lessons':total_lessons,'completed_lessons':completed_lessons,'progress':progress,})
     return render(
         request,
         'courses/my_learning.html',
-        {'courses': courses}
+        {'course_progress': course_progress}
     )
