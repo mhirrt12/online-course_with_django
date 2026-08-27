@@ -61,4 +61,9 @@ path(
     views.certificate_view,
     name='certificate'
 ),
+path(
+    'certificate/<int:id>/download/',
+    views.download_certificate,
+    name='download_certificate'
+),
 ]
