@@ -238,6 +238,9 @@ def instructor_dashboard(request):
    student_count = courses.aggregate(
     Count('students')
 )['students__count']
+   lesson_count = lesson.objects.filter(
+    course__in=courses
+).count()
    return render(
         request,
         'courses/instructor_dashboard.html',
