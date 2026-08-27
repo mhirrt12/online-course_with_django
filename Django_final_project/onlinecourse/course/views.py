@@ -366,7 +366,10 @@ def edit_lesson(request, lesson_id):
 @login_required
 @instructor_required
 def delete_lesson(request, lesson_id):
-    lesson_obj = lesson.objects.get(id=lesson_id)
+    lesson_obj = lesson.objects.get(
+    id=lesson_id,
+    course__instructor=request.user
+)
     course_id = lesson_obj.course.id
     lesson_obj.delete()
     return redirect('view_course_lesson', course_id=course_id)
