@@ -233,9 +233,12 @@ def notifications(request):
 @login_required
 @instructor_required
 def instructor_dashboard(request):
-    courses = request.user.created_courses.all()
-    
-    return render(
+   courses = request.user.created_courses.all()
+
+   student_count = courses.aggregate(
+    Count('students')
+)['students__count']
+   return render(
         request,
         'courses/instructor_dashboard.html',
         {'courses': courses}
