@@ -341,6 +341,7 @@ def manage_lessons(request, course_id):
             'lessons': lessons
         }
     )
+@login_required
 @instructor_required
 def edit_lesson(request, lesson_id):
     lesson_obj = lesson.objects.get( id=lesson_id)
