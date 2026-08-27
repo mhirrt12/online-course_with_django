@@ -241,7 +241,7 @@ def instructor_dashboard(request):
    return render(
         request,
         'courses/instructor_dashboard.html',
-        {'courses': courses}
+        {'courses': courses,'student_count':student_count}
     )
     
 @login_required
