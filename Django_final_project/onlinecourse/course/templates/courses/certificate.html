@@ -9,4 +9,8 @@
 <p>
     Issued on:
     {{ certificate.issued_at|date:"F d, Y" }}
+
 </p>
+<a href="{% url 'download_certificate' certificate.id %}">
+    📥 Download Certificate
+</a>
