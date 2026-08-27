@@ -244,6 +244,11 @@ def instructor_dashboard(request):
    enrollment_count = courses.aggregate(
     Count('students')
 )['students__count']
+   average_rating = Review.objects.filter(
+    course__in=courses
+).aggregate(
+    Avg('rating')
+)['rating__avg']
    return render(
         request,
         'courses/instructor_dashboard.html',
