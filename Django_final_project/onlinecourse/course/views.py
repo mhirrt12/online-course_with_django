@@ -1,4 +1,7 @@
 from django.http import HttpResponseForbidden,HttpResponse
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
 from .forms import ReviewForm, CourseForm, LessonForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
