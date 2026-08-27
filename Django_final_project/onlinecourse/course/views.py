@@ -344,7 +344,10 @@ def manage_lessons(request, course_id):
 @login_required
 @instructor_required
 def edit_lesson(request, lesson_id):
-    lesson_obj = lesson.objects.get( id=lesson_id)
+    lesson_obj = lesson.objects.get(
+    id=lesson_id,
+    course__instructor=request.user
+)
 
     if request.method == 'POST':
         form = LessonForm(request.POST, instance=lesson_obj)
