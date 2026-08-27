@@ -28,12 +28,8 @@ urlpatterns = [
     path("delete_review/<int:review_id>/",views.delete_review,name="delete_review"),
     path('my-learning/',views.my_learning,name='my_learning'),
     path('certificate/<int:course_id>/',views.certificate_view,name='certificate'),
-path(
-    'certificate/<int:id>/download/',
-    views.download_certificate,
-    name='download_certificate'
-),
-path(
+    path('certificate/<int:id>/download/',views.download_certificate,name='download_certificate'),
+    path(
     'password-reset/',
     auth_views.PasswordResetView.as_view(
         template_name='accounts/password_reset.html'
