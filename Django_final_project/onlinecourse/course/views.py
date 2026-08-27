@@ -101,6 +101,7 @@ def mycourse(request):
             'dashboard_courses': dashboard_courses
         }
     )
+@login_required
 def unenroll(request,id):
     course=Course.objects.get(id=id)
     course.students.remove(request.user)
