@@ -294,6 +294,7 @@ def delete_course(request, id):
 
     return redirect('instructor_dashboard')
 @login_required
+@instructor_required
 def create_lesson(request, course_id):  
     course = Course.objects.get(id=course_id, instructor=request.user)
 
