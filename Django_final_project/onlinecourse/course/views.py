@@ -436,3 +436,77 @@ def certificate_view(request, course_id):
         'courses/certificate.html',
         {'certificate': certificate}
     )
+@login_required
+def download_certificate(request, id):
+
+    certificate = Certificate.objects.get(
+        id=id,
+        user=request.user
+    )
+
+    response = HttpResponse(
+        content_type='application/pdf'
+    )
+
+    response['Content-Disposition'] = (
+        f'attachment; filename="certificate_{certificate.id}.pdf"'
+    )
+
+    pdf = canvas.Canvas(response, pagesize=A4)
+
+    width, height = A4
+
+    pdf.setFont("Helvetica-Bold", 24)
+    pdf.drawCentredString(
+        width / 2,
+        height - 100,
+        "CERTIFICATE OF COMPLETION"
+    )
+
+    pdf.setFont("Helvetica", 16)
+    pdf.drawCentredString(
+        width / 2,
+        height - 180,
+        "This certifies that"
+    )
+
+    pdf.setFont("Helvetica-Bold", 20)
+    pdf.drawCentredString(
+        width / 2,
+        height - 230,
+        certificate.user.get_full_name()
+        or certificate.user.username
+    )
+
+    pdf.setFont("Helvetica", 16)
+    pdf.drawCentredString(
+        width / 2,
+        height - 280,
+        "has successfully completed"
+    )
+
+    pdf.setFont("Helvetica-Bold", 20)
+    pdf.drawCentredString(
+        width / 2,
+        height - 330,
+        certificate.course.title
+    )
+
+    pdf.setFont("Helvetica", 12)
+    pdf.drawCentredString(
+        width / 2,
+        height - 390,
+        f"Issued on: {certificate.issued_at.strftime('%B %d, %Y')}"
+    )
+
+    pdf.setFont("Helvetica", 10)
+    pdf.drawCentredString(
+        width / 2,
+        height - 440,
+        f"Certificate ID: {certificate.id}"
+    )
+
+    pdf.showPage()
+    pdf.save()
+
+    return response
