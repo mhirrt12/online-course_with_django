@@ -18,16 +18,8 @@ urlpatterns = [
     path("notifications/",views.notifications,name="notifications"),
     path("instructor_dashboard/",views.instructor_dashboard,name="instructor_dashboard"),
     path("create-course/",views.create_course,name="create_course"),
-path(
-    "edit-course/<int:id>/",
-    views.edit_course,
-    name="edit_course"
-),
-path(
-    "delete-course/<int:id>/",
-    views.delete_course,
-    name="delete_course"
-),
+    path("edit-course/<int:id>/",views.edit_course,name="edit_course"),
+    path("delete-course/<int:id>/",views.delete_course, name="delete_course"),
 path(
     "create-lesson/<int:course_id>/",
     views.create_lesson,
