@@ -40,13 +40,13 @@ urlpatterns = [
         name="change_password"
     ),
 
-    path(
-        "password-reset/",
-        auth_views.PasswordResetView.as_view(
-            template_name="accounts/password_reset.html"
-        ),
-        name="password_reset"
+   path(
+    "password-reset/",
+    auth_views.PasswordResetView.as_view(
+        template_name="accounts/password_reset.html"
     ),
+    name="password_reset"
+),
 
     path(
         "password-reset/done/",
