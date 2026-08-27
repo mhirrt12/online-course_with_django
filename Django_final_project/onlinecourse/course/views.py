@@ -252,7 +252,7 @@ def instructor_dashboard(request):
    return render(
         request,
         'courses/instructor_dashboard.html',
-        {'courses': courses,'student_count':student_count,'lesson_count':lesson_count,'enrollment_count':enrollment_count}
+        {'courses': courses,'student_count':student_count,'lesson_count':lesson_count,'enrollment_count':enrollment_count,'average_rating':average_rating}
     )
     
 @login_required
