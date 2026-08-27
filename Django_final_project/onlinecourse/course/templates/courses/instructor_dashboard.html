@@ -1,6 +1,9 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructor Dashboard</title>
 
     <style>
@@ -13,6 +16,11 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
+            color: rgb(69, 69, 130);
+        }
+
+        h2 {
+            color: rgb(69, 69, 130);
         }
 
         .stats-container {
@@ -33,6 +41,7 @@
         .stat-card h2 {
             margin: 0;
             font-size: 35px;
+            color: rgb(69, 69, 130);
         }
 
         .stat-card p {
@@ -40,29 +49,88 @@
             font-size: 16px;
         }
 
-        .courses-container {
-            margin-top: 20px;
+        .create-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 12px 18px;
+            background-color: rgb(69, 69, 130);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .create-btn:hover {
+            opacity: 0.85;
         }
 
         .course-card {
             background-color: white;
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 25px;
+            margin: 20px 0;
             border-radius: 15px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .course-card a {
+        .course-card h3 {
+            color: rgb(69, 69, 130);
+            margin-top: 0;
+        }
+
+        .course-card p {
+            line-height: 1.6;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .actions a {
+            display: inline-block;
             margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 9px 14px;
+            border-radius: 7px;
+            text-decoration: none;
         }
 
-        @media (max-width: 1000px) {
+        .edit-btn {
+            background-color: #e8e8ff;
+            color: rgb(69, 69, 130);
+        }
+
+        .delete-btn {
+            background-color: #ffe5e5;
+            color: #b00020;
+        }
+
+        .lesson-btn {
+            background-color: #e5f4e8;
+            color: #236b35;
+        }
+
+        .edit-btn:hover,
+        .delete-btn:hover,
+        .lesson-btn:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1100px) {
+            .stats-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
+            body {
+                margin: 15px;
+            }
+
             .stats-container {
                 grid-template-columns: 1fr;
             }
@@ -74,7 +142,7 @@
 
     <h1>👨‍🏫 Instructor Dashboard</h1>
 
-    <!-- Statistics -->
+    <!-- Overall Statistics -->
     <div class="stats-container">
 
         <div class="stat-card">
@@ -84,17 +152,17 @@
 
         <div class="stat-card">
             <h2>{{ student_count }}</h2>
-            <p>👨‍🎓 Students</p>
+            <p>👨‍🎓 Unique Students</p>
         </div>
 
         <div class="stat-card">
             <h2>{{ lesson_count }}</h2>
-            <p>📖 Lessons</p>
+            <p>📖 Total Lessons</p>
         </div>
 
         <div class="stat-card">
             <h2>{{ enrollment_count }}</h2>
-            <p>📝 Enrollments</p>
+            <p>📝 Total Enrollments</p>
         </div>
 
         <div class="stat-card">
@@ -111,45 +179,76 @@
     </div>
 
     <!-- Create Course -->
-    <a href="{% url 'create_course' %}">
+    <a href="{% url 'create_course' %}" class="create-btn">
         ➕ Create Course
     </a>
 
-    <div class="courses-container">
+    <!-- Course Analytics -->
+    <h2>📊 My Course Analytics</h2>
 
-        <h2>My Courses</h2>
+    {% for item in course_analytics %}
 
-        {% for course in courses %}
+        <div class="course-card">
 
-            <div class="course-card">
+            <h3>{{ item.course.title }}</h3>
 
-                <h3>{{ course.title }}</h3>
+            <p>
+                {{ item.course.description }}
+            </p>
 
-                <p>
-                    {{ course.description }}
-                </p>
+            <p>
+                👨‍🎓 <strong>Enrollments:</strong>
+                {{ item.enrollment_count }}
+            </p>
 
-                <a href="{% url 'edit_course' course.id %}">
-                    ✏️ Edit
+            <p>
+                📖 <strong>Lessons:</strong>
+                {{ item.lesson_count }}
+            </p>
+
+            <p>
+                ⭐ <strong>Average Rating:</strong>
+
+                {% if item.average_rating %}
+                    {{ item.average_rating|floatformat:1 }} / 5
+                {% else %}
+                    No ratings yet
+                {% endif %}
+            </p>
+
+            <div class="actions">
+
+                <a
+                    href="{% url 'edit_course' item.course.id %}"
+                    class="edit-btn"
+                >
+                    ✏️ Edit Course
                 </a>
 
-                <a href="{% url 'delete_course' course.id %}">
-                    🗑️ Delete
+                <a
+                    href="{% url 'delete_course' item.course.id %}"
+                    class="delete-btn"
+                >
+                    🗑️ Delete Course
                 </a>
 
-                <a href="{% url 'manage_lessons' course.id %}">
+                <a
+                    href="{% url 'manage_lessons' item.course.id %}"
+                    class="lesson-btn"
+                >
                     📖 Manage Lessons
                 </a>
 
             </div>
 
-        {% empty %}
+        </div>
 
-            <p>You haven't created any courses yet.</p>
+    {% empty %}
 
-        {% endfor %}
+        <p>You haven't created any courses yet.</p>
 
-    </div>
+    {% endfor %}
 
 </body>
 </html>
+```
