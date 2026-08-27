@@ -4,7 +4,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.category_list, name='category_list'),
-  
     path("<int:id>",views.coursedetail,name="coursedetail"),
     path("enroll/<int:id>",views.enroll,name='enroll'),
     path("mycourse/",views.mycourse,name='mycourse'),
@@ -16,20 +15,9 @@ urlpatterns = [
     path("save_course/<int:id>/", views.save_course, name='save_course'),
     path("unsave_course/<int:id>/", views.unsave_course, name='unsave_course'),
     path("saved_courses/", views.saved_courses, name='saved_courses'),
-    path(
-    "notifications/",
-    views.notifications,
-    name="notifications"
-),
-    path(
-    "instructor_dashboard/",
-    views.instructor_dashboard,
-    name="instructor_dashboard"),
-    path(
-    "create-course/",
-    views.create_course,
-    name="create_course"
-),
+    path("notifications/",views.notifications,name="notifications"),
+    path("instructor_dashboard/",views.instructor_dashboard,name="instructor_dashboard"),
+    path("create-course/",views.create_course,name="create_course"),
 path(
     "edit-course/<int:id>/",
     views.edit_course,
