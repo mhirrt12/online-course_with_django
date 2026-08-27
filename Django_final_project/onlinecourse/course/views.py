@@ -283,6 +283,7 @@ def edit_course(request, id):
         {'form': form}
     )
 @login_required
+@instructor_required
 def delete_course(request, id):
     course = Course.objects.get(
         id=id,
