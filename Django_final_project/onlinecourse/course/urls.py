@@ -28,4 +28,5 @@ urlpatterns = [
     path('my-learning/',views.my_learning,name='my_learning'),
     path('certificate/<int:course_id>/',views.certificate_view,name='certificate'),
     path('certificate/<int:id>/download/',views.download_certificate,name='download_certificate'),
+    path('manage_lessons/<int:id>/',views.manage_lessons,name="manage_lessons")
 ]
