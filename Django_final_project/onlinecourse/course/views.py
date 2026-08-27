@@ -321,6 +321,7 @@ def view_course_lesson(request, course_id):
     lesson_obj = course.lesson_set.all()
     return render(request, 'courses/view_lesson.html', {'lesson': lesson_obj})
 @login_required
+@instructor_required
 def manage_lessons(request, course_id):
 
     course = Course.objects.get(
