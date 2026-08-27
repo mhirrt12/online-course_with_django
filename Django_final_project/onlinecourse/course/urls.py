@@ -20,15 +20,9 @@ urlpatterns = [
     path("create-course/",views.create_course,name="create_course"),
     path("edit-course/<int:id>/",views.edit_course,name="edit_course"),
     path("delete-course/<int:id>/",views.delete_course, name="delete_course"),
-path(
-    "create-lesson/<int:course_id>/",
-    views.create_lesson,
-    name="create_lesson"
-),path(
-    "view-lesson/<int:course_id>/",
-    views.view_course_lesson,
-    name="view_course_lesson")
-,path("edit-lesson/<int:lesson_id>/", views.edit_lesson, name="edit_lesson"),
+    path("create-lesson/<int:course_id>/",views.create_lesson,name="create_lesson"),
+    path("view-lesson/<int:course_id>/",views.view_course_lesson,name="view_course_lesson"),
+    path("edit-lesson/<int:lesson_id>/", views.edit_lesson, name="edit_lesson"),
 path("delete-lesson/<int:lesson_id>/", views.delete_lesson, name="delete_lesson"),
 path("edit_review/<int:review_id>/",views.edit_review ,name="edit_review"),
 path("delete_review/<int:review_id>/",views.delete_review,name="delete_review"),
