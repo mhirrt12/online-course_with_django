@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Lessons</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .add-btn {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 10px 15px;
+            background: #454582;
+            color: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Manage Lessons</h1>
+
+    <h2>Course: {{ course.title }}</h2>
+
+    <a class="add-btn" href="{% url 'create_lesson' course.id %}">
+        ➕ Add Lesson
+    </a>
+
+    {% for item in lessons %}
+
+        <div class="lesson-card">
+
+            <h3>{{ item.title }}</h3>
+
+            <p>{{ item.content }}</p>
+
+            <a href="{% url 'edit_lesson' item.id %}">
+                ✏️ Edit
+            </a>
+
+            <a href="{% url 'delete_lesson' item.id %}">
+                🗑️ Delete
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <p>This course doesn't have any lessons yet.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="{% url 'instructor_dashboard' %}">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
