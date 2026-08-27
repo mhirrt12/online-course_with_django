@@ -263,6 +263,7 @@ def create_course(request):
         {'form': form}
     )
 @login_required
+@instructor_required
 def edit_course(request, id):
     course = Course.objects.get(id=id, instructor=request.user)
 
