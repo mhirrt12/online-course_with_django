@@ -241,6 +241,7 @@ def instructor_dashboard(request):
     )
     
 @login_required
+@instructor_required
 def create_course(request):
 
     if request.method == 'POST':
