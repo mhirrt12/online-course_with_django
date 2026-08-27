@@ -29,11 +29,6 @@ urlpatterns = [
     path('my-learning/',views.my_learning,name='my_learning'),
     path('certificate/<int:course_id>/',views.certificate_view,name='certificate'),
     path('certificate/<int:id>/download/',views.download_certificate,name='download_certificate'),
-    path(
-    'password-reset/',
-    auth_views.PasswordResetView.as_view(
-        template_name='accounts/password_reset.html'
-    ),
-    name='password_reset'
-),
+    path('password-reset/',auth_views.PasswordResetView.as_view(template_name='accounts/password_reset.html'),
+    name='password_reset'),
 ]
