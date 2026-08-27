@@ -7,7 +7,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course,Category,Review,lesson,LessonCompletion,Certificate,Notification 
 from django.core.paginator import Paginator
-from django.db.models import Avg,Q
+from django.db.models import Avg,Q,Count
 # Create your views here.
 def instructor_required(view_func):
     def wrapper(request,*args,**kwargs):
