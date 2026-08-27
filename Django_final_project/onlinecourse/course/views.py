@@ -236,11 +236,14 @@ def instructor_dashboard(request):
    courses = request.user.created_courses.all()
 
    student_count = courses.aggregate(
-    Count('students')
+    Count('students', distinct=True)
 )['students__count']
    lesson_count = lesson.objects.filter(
     course__in=courses
 ).count()
+   enrollment_count = courses.aggregate(
+    Count('students')
+)['students__count']
    return render(
         request,
         'courses/instructor_dashboard.html',
