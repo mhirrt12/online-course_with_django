@@ -15,7 +15,7 @@ def  course_list_api(request):
      if request.method=='POST':
         serializer=CourseSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(instructor=request.user)
             return Response(serializer.data,status=201)
         return Response(serializer.errors,status=400)
 
