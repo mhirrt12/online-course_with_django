@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', include('course.urls')),
     path("accounts/", include("accounts.urls")),
-    path('api/',include('api/urls')),
+    path('api/',include('api.urls')),
     # Include the course app's URLs
 ]
