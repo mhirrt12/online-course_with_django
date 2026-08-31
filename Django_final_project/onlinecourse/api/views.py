@@ -24,4 +24,9 @@ def one_course(request):
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
-   
+    if request.method=='POST':
+        serializer=CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=201)
+        return Response(serializer.errors,status=400)
