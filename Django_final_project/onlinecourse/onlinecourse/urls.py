@@ -17,12 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import include, path
-from django.shortcuts import render
 
 # from ..course import views
 def home(request):
     
-    return render(request,"./templates/home.html")
+    return HttpResponse("<h1>Welcome to the Online Course Platform</h1><p>Explore our courses and start learning today!</p>")
 urlpatterns = [
     path('',home,name='home'),
     path('admin/', admin.site.urls),
