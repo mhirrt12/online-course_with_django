@@ -10,3 +10,4 @@ from .serializers import CourseSerializer
 def  course_list_api(request):
     courses= Course.objects.all()
     serialiser= CourseSerializer(courses, many=True)
+    return Response(serialiser.data)
