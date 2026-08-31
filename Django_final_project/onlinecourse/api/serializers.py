@@ -4,6 +4,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
         fields='__all__'
+        read_only_fields=['students']
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
