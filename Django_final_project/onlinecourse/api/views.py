@@ -8,9 +8,16 @@ from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2
 
 @api_view(['GET','POST'])
 def  course_list_api(request):
-    courses= Course.objects.all()
-    serialiser= CourseSerializer(courses, many=True)
-    return Response(serialiser.data)
+     if request.method=='GET':
+       courses= Course.objects.all()
+       serialiser= CourseSerializer(courses, many=True)
+       return Response(serialiser.data)
+     if request.method=='POST':
+        serializer=CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=201)
+        return Response(serializer.errors,status=400)
 
 @api_view(['GET'])
 def category_list_api(request):
@@ -19,14 +26,8 @@ def category_list_api(request):
     return Response(serializer.data)
 @api_view(['GET','POST'])
 def one_course(request):
-    if request.method=='GET':
         
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
-    if request.method=='POST':
-        serializer=CourseSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data,status=201)
-        return Response(serializer.errors,status=400)
+   
