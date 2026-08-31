@@ -21,4 +21,4 @@ def category_list_api(request):
 def one_course(request):
     course= Course.objects.first()
     serializer= CourseSerializer2(course)
-    return Response(serializer)
+    return Response(serializer.data)
