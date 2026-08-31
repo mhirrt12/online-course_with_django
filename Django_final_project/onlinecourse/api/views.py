@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from course.models import Course,Category
 from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def  course_list_api(request):
     courses= Course.objects.all()
     serialiser= CourseSerializer(courses, many=True)
