@@ -22,7 +22,7 @@ from django.shortcuts import render
 # from ..course import views
 def home(request):
     
-    return render
+    return render(request,"")
 urlpatterns = [
     path('',home,name='home'),
     path('admin/', admin.site.urls),
