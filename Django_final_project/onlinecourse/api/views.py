@@ -24,9 +24,8 @@ def category_list_api(request):
     category= Category.objects.all()
     serializer=CategorySerializer(category, many=True)
     return Response(serializer.data)
-@api_view(['GET','POST'])
+@api_view(['GET'])
 def one_course(request):
-        
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
