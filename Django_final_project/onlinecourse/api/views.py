@@ -35,7 +35,7 @@ def one_course(request):
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
-class CourseDetailAPIView(APIView):
+class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
 
     def get(self, request, id):
        course = get_object_or_404(Course,id=id)
