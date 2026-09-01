@@ -36,25 +36,5 @@ def one_course(request):
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
 class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
-
-    def get(self, request, id):
-       course = get_object_or_404(Course,id=id)
-       self.check_object_permissions(request, course)
-       serializer=CourseSerializer(course)
-       return Response(serializer.data)
-
-    def put(self, request, id):
-        course=get_object_or_404(Course , id=id)
-        self.check_object_permissions(request, course)
-        serializer=CourseSerializer(course,data=request.data,partial=True)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-    def delete(self, request, id):
-        course= get_object_or_404(Course,id=id)
-        self.check_object_permissions(request, course)
-        course.delete()
-        return Response (status =204 )
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
