@@ -51,4 +51,6 @@ class CourseDetailAPIView(APIView):
             return Response(serializer.data)
 
     def delete(self, request, id):
-        pass
+        course= get_object_or_404(Course,id=id)
+        course.delete()
+        return Response (status =204 )
