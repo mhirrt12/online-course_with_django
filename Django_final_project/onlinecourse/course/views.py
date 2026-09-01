@@ -15,6 +15,7 @@ def instructor_required(view_func):
             return HttpResponseForbidden("only instructor can access this page.")
         return view_func(request,*args,**kwargs)
     return wrapper
+
 def course_list(request):
     # Logic to retrieve courses from the database
     courses = Course.objects.all()
@@ -276,6 +277,10 @@ def instructor_dashboard(request):
         'courses/instructor_dashboard.html',
         {'courses': courses,'student_count':student_count,'lesson_count':lesson_count,'enrollment_count':enrollment_count,'average_rating':average_rating,'course_analytics': course_analytics,}
     )
+   
+@login_required
+def student_dashboard(request):
+    return render(request, 'courses/student_dashboard.html')    
     
 @login_required
 @instructor_required
