@@ -14,3 +14,10 @@ class IsInstructorOrReadOnly(BasePermission):
         profile = getattr(request.user, 'profile', None)
 
         return profile and profile.role == 'instructor'
+
+    def has_object_permission(self, request, view, obj):
+
+        if request.method in ['GET', 'HEAD', 'OPTIONS']:
+            return True
+
+        return obj.instructor == request.user
