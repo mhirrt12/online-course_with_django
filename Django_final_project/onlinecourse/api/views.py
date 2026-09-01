@@ -55,5 +55,6 @@ class CourseDetailAPIView(APIView):
 
     def delete(self, request, id):
         course= get_object_or_404(Course,id=id)
+        self.check_object_permissions(request, course)
         course.delete()
         return Response (status =204 )
