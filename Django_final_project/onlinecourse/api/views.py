@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from .permissions import IsInstructor
 
 @api_view(['GET','POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated,IsInstructor])
 def  course_list_api(request):
      if request.method=='GET':
        courses= Course.objects.all()
