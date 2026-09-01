@@ -39,7 +39,7 @@ class CourseDetailAPIView(APIView):
 
     def get(self, request, id):
         return Response({
-            'message': 'GET works',
+            'message': 'GET works 🥳🥳🥳',
             'course_id': id
         })
 
