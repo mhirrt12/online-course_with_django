@@ -35,8 +35,6 @@ def one_course(request):
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
-@api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsInstructorOrReadOnly])
 class CourseDetailAPIView(APIView):
 
     def get(self, request, id):
