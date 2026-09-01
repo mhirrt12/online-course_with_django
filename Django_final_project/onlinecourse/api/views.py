@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from rest_framework.response import Response
@@ -36,4 +36,31 @@ def one_course(request):
        course= Course.objects.first()
        serializer= CourseSerializer2(course)
        return Response(serializer.data)
-   
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsInstructorOrReadOnly])
+def course_detail_api(request, id):
+
+    course = get_object_or_404(Course, id=id)
+
+    if request.method == 'GET':
+        serializer = CourseSerializer(course)
+        return Response(serializer.data)
+
+    if request.method == 'PUT':
+        serializer = CourseSerializer(
+            course,
+            data=request.data
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(
+            serializer.errors,
+            status=400
+        )
+
+    if request.method == 'DELETE':
+        course.delete()
+        return Response(status=204)
