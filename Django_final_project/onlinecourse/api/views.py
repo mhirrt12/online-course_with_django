@@ -10,10 +10,10 @@ from rest_framework.decorators import (
     permission_classes
 )
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsInstructor
+from .permissions import IsInstructorOrReadOnly
 
 @api_view(['GET','POST'])
-@permission_classes([IsAuthenticated,IsInstructor])
+@permission_classes([IsAuthenticated,IsInstructorOrReadOnly])
 def  course_list_api(request):
      if request.method=='GET':
        courses= Course.objects.all()
