@@ -38,3 +38,4 @@ def one_course(request):
 class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
