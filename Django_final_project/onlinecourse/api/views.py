@@ -39,6 +39,7 @@ class CourseDetailAPIView(APIView):
 
     def get(self, request, id):
        course = get_object_or_404(Course,id=id)
+       self.check_object_permissions(request, course)
        serializer=CourseSerializer(course)
        return Response(serializer.data)
 
