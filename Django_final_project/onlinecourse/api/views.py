@@ -44,7 +44,7 @@ class CourseDetailAPIView(APIView):
 
     def put(self, request, id):
         course=get_object_or_404(Course , id=id)
-        serializer=CourseSerializer(course,data=request.data)
+        serializer=CourseSerializer(course,data=request.data,partial=True)
         
         if serializer.is_valid():
             serializer.save()
