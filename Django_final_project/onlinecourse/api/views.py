@@ -37,29 +37,13 @@ def one_course(request):
        return Response(serializer.data)
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsInstructorOrReadOnly])
-def course_detail_api(request, id):
+class CourseDetailAPIView(APIView):
 
-    course = get_object_or_404(Course, id=id)
+    def get(self, request, id):
+        pass
 
-    if request.method == 'GET':
-        serializer = CourseSerializer(course)
-        return Response(serializer.data)
+    def put(self, request, id):
+        pass
 
-    if request.method == 'PUT':
-        serializer = CourseSerializer(
-            course,
-            data=request.data
-        )
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(
-            serializer.errors,
-            status=400
-        )
-
-    if request.method == 'DELETE':
-        course.delete()
-        return Response(status=204)
+    def delete(self, request, id):
+        pass
