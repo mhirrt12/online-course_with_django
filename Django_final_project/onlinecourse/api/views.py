@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-
 # Create your views here.
 from rest_framework.response import Response
 from course.models import Course,Category
@@ -11,7 +10,7 @@ from rest_framework.decorators import (
 )
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsInstructorOrReadOnly
-
+from rest_framework.views import APIView
 @api_view(['GET','POST'])
 @permission_classes([IsAuthenticated,IsInstructorOrReadOnly])
 def  course_list_api(request):
