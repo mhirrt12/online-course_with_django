@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from course.models import Course,Category
 from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2
 
+from rest_framework.permissions import IsAuthenticated
+
 @api_view(['GET','POST'])
 def  course_list_api(request):
      if request.method=='GET':
