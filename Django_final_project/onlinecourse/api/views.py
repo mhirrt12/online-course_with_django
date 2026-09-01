@@ -38,13 +38,12 @@ def one_course(request):
 class CourseDetailAPIView(APIView):
 
     def get(self, request, id):
-        return Response({
-            'message': 'GET works 🥳🥳🥳',
-            'course_id': id
-        })
+       course = get_object_or_404(Course,id=id)
+       serializer=CourseSerializer(course)
+       return Response(serializer.data)
 
     def put(self, request, id):
-        pass
+        course=get_object_or_404(Course , id=id)
 
     def delete(self, request, id):
         pass
