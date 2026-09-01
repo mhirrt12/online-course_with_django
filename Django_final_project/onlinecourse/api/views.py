@@ -45,6 +45,10 @@ class CourseDetailAPIView(APIView):
     def put(self, request, id):
         course=get_object_or_404(Course , id=id)
         serializer=CourseSerializer(course,data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
     def delete(self, request, id):
         pass
