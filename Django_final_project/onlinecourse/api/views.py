@@ -40,7 +40,10 @@ def one_course(request):
 class CourseDetailAPIView(APIView):
 
     def get(self, request, id):
-        pass
+        return Response({
+            'message': 'GET works',
+            'course_id': id
+        })
 
     def put(self, request, id):
         pass
