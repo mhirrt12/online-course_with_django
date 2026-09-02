@@ -50,3 +50,15 @@ class CourseListCreateAPIView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
+from rest_framework.viewsets import ModelViewSet
+
+class CourseViewSet(ModelViewSet):
+
+    queryset = Course.objects.all()
+
+    serializer_class = CourseSerializer
+
+    permission_classes = [
+        IsAuthenticated,
+        IsInstructorOrReadOnly
+    ]
