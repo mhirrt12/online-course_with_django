@@ -5,6 +5,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 router.register('courses', views.CourseViewSet)
+urlpatterns = router.urls
 # urlpatterns=[path(
 #     'courses/',
 #     views.CourseListCreateAPIView.as_view(),
