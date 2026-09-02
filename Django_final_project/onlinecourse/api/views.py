@@ -66,7 +66,7 @@ class CourseViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
-    @action(detail=True, methods=['post','GET'])
+    @action(detail=True, methods=['post'])
     def enroll(self, request, pk=None):
 
         course = get_object_or_404(Course, pk=pk)
