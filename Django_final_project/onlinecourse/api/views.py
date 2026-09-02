@@ -66,23 +66,23 @@ class CourseViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
-   @action(
+    @action(
     detail=True,
     methods=['post'],
     permission_classes=[IsAuthenticated]
 )
-def enroll(self, request, pk=None):
-    course = self.get_object()
+    def enroll(self, request, pk=None):
+     course = self.get_object()
 
-    if course.students.filter(id=request.user.id).exists():
+     if course.students.filter(id=request.user.id).exists():
         return Response(
             {"message": "You are already enrolled in this course."},
             status=status.HTTP_400_BAD_REQUEST
         )
 
-    course.students.add(request.user)
+     course.students.add(request.user)
 
-    return Response(
+     return Response(
         {"message": "Successfully enrolled."},
         status=status.HTTP_200_OK
     )
