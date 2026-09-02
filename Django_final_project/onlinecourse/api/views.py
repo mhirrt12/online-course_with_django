@@ -9,47 +9,47 @@ from rest_framework.permissions import IsAuthenticated
 from .permissions import IsInstructorOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView
-@api_view(['GET','POST'])
-@permission_classes([IsAuthenticated,IsInstructorOrReadOnly])
-def  course_list_api(request):
-     if request.method=='GET':
-       courses= Course.objects.all()
-       serialiser= CourseSerializer(courses, many=True)
-       return Response(serialiser.data)
-     if request.method=='POST':
-        serializer=CourseSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(instructor=request.user)
-            return Response(serializer.data,status=201)
-        return Response(serializer.errors,status=400)
+# @api_view(['GET','POST'])
+# @permission_classes([IsAuthenticated,IsInstructorOrReadOnly])
+# def  course_list_api(request):
+#      if request.method=='GET':
+#        courses= Course.objects.all()
+#        serialiser= CourseSerializer(courses, many=True)
+#        return Response(serialiser.data)
+#      if request.method=='POST':
+#         serializer=CourseSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(instructor=request.user)
+#             return Response(serializer.data,status=201)
+#         return Response(serializer.errors,status=400)
 
-@api_view(['GET'])
-def category_list_api(request):
-    category= Category.objects.all()
-    serializer=CategorySerializer(category, many=True)
-    return Response(serializer.data)
-@api_view(['GET'])
-def one_course(request):
-       course= Course.objects.first()
-       serializer= CourseSerializer2(course)
-       return Response(serializer.data)
-class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
-class CourseListCreateAPIView(ListCreateAPIView):
+# @api_view(['GET'])
+# def category_list_api(request):
+#     category= Category.objects.all()
+#     serializer=CategorySerializer(category, many=True)
+#     return Response(serializer.data)
+# @api_view(['GET'])
+# def one_course(request):
+#        course= Course.objects.first()
+#        serializer= CourseSerializer2(course)
+#        return Response(serializer.data)
+# class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
+#     queryset = Course.objects.all()
+#     serializer_class = CourseSerializer
+#     permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
+# class CourseListCreateAPIView(ListCreateAPIView):
 
-    queryset = Course.objects.all()
+#     queryset = Course.objects.all()
 
-    serializer_class = CourseSerializer
+#     serializer_class = CourseSerializer
 
-    permission_classes = [
-        IsAuthenticated,
-        IsInstructorOrReadOnly
-    ]
+#     permission_classes = [
+#         IsAuthenticated,
+#         IsInstructorOrReadOnly
+#     ]
 
-    def perform_create(self, serializer):
-        serializer.save(instructor=self.request.user)
+#     def perform_create(self, serializer):
+#         serializer.save(instructor=self.request.user)
 from rest_framework.viewsets import ModelViewSet
 
 class CourseViewSet(ModelViewSet):
