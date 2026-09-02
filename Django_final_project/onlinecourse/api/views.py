@@ -62,3 +62,6 @@ class CourseViewSet(ModelViewSet):
         IsAuthenticated,
         IsInstructorOrReadOnly
     ]
+
+    def perform_create(self, serializer):
+        serializer.save(instructor=self.request.user)
