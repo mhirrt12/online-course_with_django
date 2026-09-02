@@ -65,3 +65,14 @@ class CourseViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
+    @action(detail=True, methods=['post'])
+    def enroll(self, request, pk=None):
+
+        course = get_object_or_404(Course, pk=pk)
+
+        course.students.add(request.user)
+
+        return Response(
+            {"message": "Successfully enrolled"},
+            status=status.HTTP_200_OK
+        )
