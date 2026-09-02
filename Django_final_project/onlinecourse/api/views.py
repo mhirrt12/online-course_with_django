@@ -37,3 +37,6 @@ class CourseDetailAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
 class CourseListCreateAPIView(ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
