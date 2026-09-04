@@ -79,7 +79,7 @@ def logout(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def view_enrolled_courses(request):
-        course = Course.objects.get_object_or_404(students=request.user)
+        course = Course.objects.filter(students=request.user)
         serializer = CourseSerializer(course, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
