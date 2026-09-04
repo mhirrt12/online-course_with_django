@@ -68,7 +68,9 @@ def login (request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def Logout(requesr):
+def Logout(request):
+    user=request.user
+    
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
