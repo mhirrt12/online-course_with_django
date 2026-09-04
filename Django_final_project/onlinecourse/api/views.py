@@ -108,3 +108,8 @@ class CourseViewSet(ModelViewSet):
              status=status.HTTP_200_OK
          )
     @action (detail=True ,methods=['get'],permission_classes=[IsAuthenticated])
+    def view_enrolled_courses(self,request,pk=None):
+        course = self.get_object()
+        enrolled_students = course.students.all()
+        serializer = UserSerializer(enrolled_students, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
