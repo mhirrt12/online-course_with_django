@@ -82,12 +82,12 @@ class CourseViewSet(ModelViewSet):
         {"message": "Successfully enrolled."},
         status=status.HTTP_200_OK
     )
-     
-     def unenroll(self,request,pk=None):
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def unenroll(self,request,pk=None):
          course = self.get_object()
          if not course.students.filter(id=request.user.id).exists():
              return Response(
-                 {"message": "You are not enrolled in this course."},)
+                 {"message": "You are not enrolled in this course."})
          
          course.students.remove(request.user)
          return Response(
