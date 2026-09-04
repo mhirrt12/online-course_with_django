@@ -70,9 +70,7 @@ def login (request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def logout(request):
-
     Token.objects.filter(user=request.user).delete()
-
     return Response(
         {"message": "Logout successful."},
         status=status.HTTP_200_OK
