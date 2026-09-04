@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from rest_framework.response import Response
@@ -69,8 +70,7 @@ def login (request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def Logout(request):
-    user=request.user
-    
+    token= Token.objects.get (user=request.user) 
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
