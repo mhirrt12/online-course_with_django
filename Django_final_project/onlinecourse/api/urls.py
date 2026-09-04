@@ -7,7 +7,6 @@ router = DefaultRouter()
 router.register('courses', views.CourseViewSet)
 urlpatterns =[
     path('login/', views.login, name='login'),
-    
     path('api/', include(router.urls))
 ]
 # urlpatterns=[path(
