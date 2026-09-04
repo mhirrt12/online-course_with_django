@@ -72,6 +72,7 @@ def login (request):
 def Logout(request):
     token= Token.objects.get (user=request.user) 
     token.clean()
+    return Response({"message":"Logout successful. "}, status=status.HTTP_200_OK)
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
