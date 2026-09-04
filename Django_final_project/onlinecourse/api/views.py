@@ -69,13 +69,11 @@ def login (request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def logout(request):
 
-    try:
-        token = Token.objects.get(user=request.user)
-        token.delete()
-    except Token.DoesNotExist:
-        pass
+    Token.objects.filter(user=request.user).delete()
 
     return Response(
         {"message": "Logout successful."},
