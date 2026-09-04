@@ -75,7 +75,7 @@ def logout(request):
         {"message": "Logout successful."},
         status=status.HTTP_200_OK
     )
-    
+@api_view(['POST'])
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def view_enrolled_courses(request):
