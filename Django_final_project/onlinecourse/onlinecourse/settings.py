@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
     os.environ.get('RENDER_EXTERNAL_HOSTNAME', ''),
 ]
 
-
+REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
