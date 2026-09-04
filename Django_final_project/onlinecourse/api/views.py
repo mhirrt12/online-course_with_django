@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from django.contrib
+from django.contrib.auth import authenticate 
 # @api_view(['GET','POST'])
 # @permission_classes([IsAuthenticated,IsInstructorOrReadOnly])
 # def  course_list_api(request):
@@ -54,6 +54,9 @@ from django.contrib
 #     def perform_create(self, serializer):
 #         serializer.save(instructor=self.request.user)
 from rest_framework.viewsets import ModelViewSet
+
+@api_view(['POST'])
+def login (request):
 
 class CourseViewSet(ModelViewSet):
 
