@@ -65,6 +65,10 @@ def login (request):
                         status=status.HTTP_401_UNAUTHORIZED)
     token, created = Token.objects.get_or_create(user=user)
     return Response({"message":"Login successful. ", "token":token.key})
+def view_enrolled_courses(self,request,pk=None):
+        course = Course.get_or_404(Course,pk=pk, students=request.user)
+        serializer = UserSerializer(enrolled_students, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
 class CourseViewSet(ModelViewSet):
 
@@ -107,8 +111,5 @@ class CourseViewSet(ModelViewSet):
              {"message": "Successfully unenrolled."},
              status=status.HTTP_200_OK
          )
-    @action (detail=True ,methods=['get'],permission_classes=[IsAuthenticated])
-    def view_enrolled_courses(self,request,pk=None):
-        course = Course.get_or_404(Course,pk=pk, students=request.user)
-        serializer = UserSerializer(enrolled_students, many=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+  
+   
