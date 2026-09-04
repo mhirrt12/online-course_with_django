@@ -87,7 +87,7 @@ class CourseViewSet(ModelViewSet):
          course = self.get_object()
          if not course.students.filter(id=request.user.id).exists():
              return Response(
-                 {"message": "You are not enrolled in this course."})
+                 {"message": "You are not enrolled in this course."},status=status.HTTP_400_BAD_REQUEST)
          
          course.students.remove(request.user)
          return Response(
