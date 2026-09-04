@@ -71,8 +71,11 @@ def login (request):
 @permission_classes([IsAuthenticated])
 def logout(request):
 
-    token = Token.objects.get(user=request.user)
-    token.delete()
+    try:
+        token = Token.objects.get(user=request.user)
+        token.delete()
+    except Token.DoesNotExist:
+        pass
 
     return Response(
         {"message": "Logout successful."},
