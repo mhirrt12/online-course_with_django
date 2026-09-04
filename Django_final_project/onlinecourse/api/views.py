@@ -69,8 +69,6 @@ def login (request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def logout(request):
 
     Token.objects.filter(user=request.user).delete()
