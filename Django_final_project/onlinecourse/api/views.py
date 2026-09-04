@@ -63,6 +63,7 @@ def login (request):
     if user is None:
         return Response({"error":"Invalid username and password. "},
                         status=status.HTTP_401_UNAUTHORIZED)
+    token, created = Token.objects.get_or_create(user=user)
 
 class CourseViewSet(ModelViewSet):
 
