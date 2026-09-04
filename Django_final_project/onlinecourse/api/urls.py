@@ -8,6 +8,7 @@ router.register('courses', views.CourseViewSet)
 urlpatterns =[
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
+    path('register/', views.register, name='register'),
     path('view/', views.view_enrolled_courses, name='view_enrolled_courses'),
     path('api/', include(router.urls))
 ]
