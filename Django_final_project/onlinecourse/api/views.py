@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from rest_framework.response import Response
 from course.models import Course,Category
-from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2
+from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2,UserSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import (api_view,permission_classes,action )
 from rest_framework.permissions import IsAuthenticated
