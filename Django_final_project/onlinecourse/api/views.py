@@ -69,7 +69,7 @@ def login (request):
 @permission_classes([IsAuthenticated])
 def view_enrolled_courses(self,request,pk=None):
         course = Course.get_or_404(Course,pk=pk, students=request.user)
-        serializer = UserSerializer(enrolled_students, many=True)
+        serializer = CourseSerializer(course, many=False)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 class CourseViewSet(ModelViewSet):
