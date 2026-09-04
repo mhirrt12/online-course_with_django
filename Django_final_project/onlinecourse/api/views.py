@@ -68,6 +68,8 @@ def login (request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+def Logout(requesr):
+    
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def view_enrolled_courses(self,request,pk=None):
