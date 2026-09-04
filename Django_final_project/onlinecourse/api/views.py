@@ -69,10 +69,15 @@ def login (request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def Logout(request):
-    token= Token.objects.get (user=request.user) 
-    token.clean()
-    return Response({"message":"Logout successful. "}, status=status.HTTP_200_OK)
+def logout(request):
+
+    token = Token.objects.get(user=request.user)
+    token.delete()
+
+    return Response(
+        {"message": "Logout successful."},
+        status=status.HTTP_200_OK
+    )
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
