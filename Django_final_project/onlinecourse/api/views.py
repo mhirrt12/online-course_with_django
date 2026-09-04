@@ -71,6 +71,7 @@ def login (request):
 @permission_classes([IsAuthenticated])
 def Logout(request):
     token= Token.objects.get (user=request.user) 
+    token.clean()
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
