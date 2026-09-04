@@ -107,3 +107,4 @@ class CourseViewSet(ModelViewSet):
              {"message": "Successfully unenrolled."},
              status=status.HTTP_200_OK
          )
+    @action (detail=True ,methods=['get'],permission_classes=[IsAuthenticated])
