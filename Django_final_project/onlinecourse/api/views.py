@@ -57,6 +57,8 @@ from rest_framework.viewsets import ModelViewSet
 
 @api_view(['POST'])
 def login (request):
+    username= request.data.get('username')
+    password= request.data.get('password')
 
 class CourseViewSet(ModelViewSet):
 
