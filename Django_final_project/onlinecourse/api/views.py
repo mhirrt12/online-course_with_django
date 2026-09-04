@@ -59,6 +59,7 @@ from rest_framework.viewsets import ModelViewSet
 def login (request):
     username= request.data.get('username')
     password= request.data.get('password')
+    user =authenticate(username=username,password=password)
 
 class CourseViewSet(ModelViewSet):
 
