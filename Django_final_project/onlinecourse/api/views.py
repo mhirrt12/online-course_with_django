@@ -84,3 +84,7 @@ class CourseViewSet(ModelViewSet):
     )
      
      def unenroll(self,request,pk=None):
+         course = self.get_object()
+         if not course.students.filter(id=request.user.id).exists():
+             return Response(
+                 {"message": "You are not enrolled in this course."},)
