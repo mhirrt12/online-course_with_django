@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from course.models import Course ,Category,User
+from django.contrib.auth.password_validation import validate_password
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
