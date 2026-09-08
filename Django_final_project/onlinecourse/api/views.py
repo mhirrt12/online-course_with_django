@@ -105,7 +105,7 @@ class CourseViewSet(ModelViewSet):
         IsInstructorOrReadOnly
     ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category', 'level']
+    filterset_fields = ['category']
     
     
     def perform_create(self, serializer):
