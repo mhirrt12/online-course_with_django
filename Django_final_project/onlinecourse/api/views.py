@@ -103,7 +103,7 @@ class CourseViewSet(ModelViewSet):
         IsAuthenticated,
         IsInstructorOrReadOnly
     ]
-     filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter]
     search_fields = ['title']
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
