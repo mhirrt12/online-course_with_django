@@ -1,6 +1,6 @@
 from django.http import request
 from django.shortcuts import render, get_object_or_404
-from rest_framework import viewsets, filters,DjangoFilterBackend
+from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 from rest_framework.response import Response
