@@ -97,12 +97,13 @@ class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
 
     serializer_class = CourseSerializer
+    
 
     permission_classes = [
         IsAuthenticated,
         IsInstructorOrReadOnly
     ]
-
+    
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
     @action(detail=True,methods=['post'],permission_classes=[IsAuthenticated,IsInstructorOrReadOnly])
