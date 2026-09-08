@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'course',
     'accounts',
     'api',
+    
 ]
 
 MIDDLEWARE = [
