@@ -105,7 +105,7 @@ class CourseViewSet(ModelViewSet):
         IsInstructorOrReadOnly
     ]
     filter_backends = [DjangoFilterBackend]
-filterset_fields = {
+    filterset_fields = {
     'category__name': ['exact', 'icontains'],
 }
     
