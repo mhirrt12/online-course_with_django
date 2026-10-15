@@ -1,6 +1,7 @@
 from django.http import request
 from django.shortcuts import render, get_object_or_404
-from rest_framework import viewsets, filters
+from rest_framework import viewsets
+from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 from rest_framework.response import Response
@@ -93,21 +94,32 @@ def view_enrolled_courses(request):
         serializer = CourseSerializer(course, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
+
 class CourseViewSet(ModelViewSet):
-
     queryset = Course.objects.all()
-
     serializer_class = CourseSerializer
-    
+    permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
 
-    permission_classes = [
-        IsAuthenticated,
-        IsInstructorOrReadOnly
+    # Filtering
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter,
     ]
-    filter_backends = [DjangoFilterBackend]
+
     filterset_fields = {
-    'category__name': ['exact', 'icontains'],
-}
+        'category__name': ['exact', 'icontains'],
+    }
+
+    # Searching
+    search_fields = ['title', 'description', 'category__name']
+
+    # Ordering
+    ordering_fields = ['title', 'created_at', 'updated_at']
+    ordering = ['-created_at', '-id']
+
+    # Keep your existing methods below...
+
     
     
     def perform_create(self, serializer):
