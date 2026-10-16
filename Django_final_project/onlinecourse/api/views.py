@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from .pagination import CoursePagination
 # Create your views here.
 from rest_framework.response import Response
 from course.models import Course,Category
