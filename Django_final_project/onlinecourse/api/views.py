@@ -95,8 +95,6 @@ def view_enrolled_courses(request):
         course = Course.objects.filter(students=request.user)
         serializer = CourseSerializer(course, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
-
-
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
