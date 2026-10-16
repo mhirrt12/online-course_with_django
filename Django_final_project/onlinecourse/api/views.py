@@ -111,7 +111,6 @@ class CourseViewSet(ModelViewSet):
     ]
 
     filterset_class = CourseFilter  # Use the custom filter class
-
     # Searching
     search_fields = ['title', 'description', 'category__name']
 
