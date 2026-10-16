@@ -100,6 +100,7 @@ class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated, IsInstructorOrReadOnly]
+    pagination_class = CoursePagination  # Use the custom pagination class
 
     # Filtering
     filter_backends = [
