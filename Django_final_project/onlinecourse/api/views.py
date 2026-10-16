@@ -117,8 +117,6 @@ class CourseViewSet(ModelViewSet):
     ordering = ['-created_at', '-id']
 
     # Keep your existing methods below...
-
-    
     
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
