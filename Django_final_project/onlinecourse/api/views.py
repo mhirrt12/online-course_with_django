@@ -110,9 +110,7 @@ class CourseViewSet(ModelViewSet):
         OrderingFilter,
     ]
 
-    filterset_fields = {
-        'category__name': ['exact', 'icontains'],
-    }
+    filterset_class = CourseFilter  # Use the custom filter class
 
     # Searching
     search_fields = ['title', 'description', 'category__name']
