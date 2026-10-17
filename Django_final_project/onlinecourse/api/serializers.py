@@ -2,6 +2,11 @@ from rest_framework import serializers
 from course.models import Course ,Category,User
 from django.contrib.auth.password_validation import validate_password
 
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Category
+        fields='__all__'
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
