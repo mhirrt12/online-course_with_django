@@ -8,7 +8,11 @@ class CategorySerializer(serializers.ModelSerializer):
         model=Category
         fields='__all__'
 class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
+     category_details = CategorySerializer(
+        source='category',
+        read_only=True
+     )
+     class Meta:
         model=Course
         fields='__all__'
         read_only_fields=['students','instructor','created_at','updated_at']
