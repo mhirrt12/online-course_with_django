@@ -25,6 +25,11 @@ class CourseSerializer(serializers.ModelSerializer):
         source='instructor',
         read_only=True
      )
+     reviews = ReviewSerializer(
+    source='review_set',
+    many=True,
+    read_only=True
+)
      class Meta:
         model=Course
         fields='__all__'
