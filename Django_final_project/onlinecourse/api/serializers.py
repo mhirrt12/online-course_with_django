@@ -16,6 +16,10 @@ class CourseSerializer(serializers.ModelSerializer):
         source='category',
         read_only=True
      )
+     instructor_details = UserSerializer(
+        source='instructor',
+        read_only=True
+     )
      class Meta:
         model=Course
         fields='__all__'
