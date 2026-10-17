@@ -7,6 +7,10 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
         fields='__all__'
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
 class CourseSerializer(serializers.ModelSerializer):
      category_details = CategorySerializer(
         source='category',
@@ -21,10 +25,7 @@ class CourseSerializer2(serializers.ModelSerializer):
     class Meta:
         model=Course
         fields='__all__'
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email']
+
 class RegisterSerializer(serializers.ModelSerializer):
       password2 = serializers.CharField(write_only=True)
 
