@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from course.models import Course ,Category,User
+from course.models import Course ,Category,User,Review
 from django.contrib.auth.password_validation import validate_password
 
 
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'rating', 'comment', 'created_at']
+        read_only_fields = fields
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
