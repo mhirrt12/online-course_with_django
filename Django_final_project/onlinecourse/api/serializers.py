@@ -23,7 +23,7 @@ class CourseSerializer(serializers.ModelSerializer):
      )
      instructor_details = UserSerializer(
         source='instructor',
-        
+        many=True,
         read_only=True
      )
      reviews = ReviewSerializer(
