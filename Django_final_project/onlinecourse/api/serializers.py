@@ -23,6 +23,7 @@ class CourseSerializer(serializers.ModelSerializer):
      )
      instructor_details = UserSerializer(
         source='instructor',
+        
         read_only=True
      )
      reviews = ReviewSerializer(
@@ -30,6 +31,9 @@ class CourseSerializer(serializers.ModelSerializer):
     many=True,
     read_only=True
 )
+     students=UserSerializer(
+         source='enrolled_courses'
+     )
      class Meta:
         model=Course
         fields='__all__'
