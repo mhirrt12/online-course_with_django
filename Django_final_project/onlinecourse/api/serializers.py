@@ -32,7 +32,8 @@ class CourseSerializer(serializers.ModelSerializer):
     read_only=True
 )
      students=UserSerializer(
-         source='enrolled_courses'
+         source='enrolled_courses',
+         read_only=True
      )
      class Meta:
         model=Course
