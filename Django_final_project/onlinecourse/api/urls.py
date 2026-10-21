@@ -11,11 +11,7 @@ urlpatterns =[
     path('register/', views.register, name='register'),
     path('view/', views.view_enrolled_courses, name='view_enrolled_courses'),
     path('api/', include(router.urls)),
-    path(
-    'courses/<int:course_id>/reviews/',
-    views.create_review,
-    name='create_review'
-),
+    path( 'courses/<int:course_id>/reviews/',views.create_review,name='create_review'),
 ]
 # urlpatterns=[path(
 #     'courses/',
