@@ -149,4 +149,34 @@ class CourseViewSet(ModelViewSet):
              status=status.HTTP_200_OK
          )
   
-   
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_review(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    serializer = ReviewCreateSerializer(data=request.data)
+
+    if serializer.is_valid():
+        if Review.objects.filter(
+            course=course,
+            user=request.user
+        ).exists():
+            return Response(
+                {"error": "You have already reviewed this course."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        review = serializer.save(
+            course=course,
+            user=request.user
+        )
+
+        return Response(
+            ReviewSerializer(review).data,
+            status=status.HTTP_201_CREATED
+        )
+
+    return Response(
+        serializer.errors,
+        status=status.HTTP_400_BAD_REQUEST
+    )
