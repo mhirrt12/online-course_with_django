@@ -7,7 +7,7 @@ from .pagination import CoursePagination
 from .filters import CourseFilter
 # Create your views here.
 from rest_framework.response import Response
-from course.models import Course,Category
+from course.models import Course,Category,Review,User       
 from .serializers import CourseSerializer,CategorySerializer,CourseSerializer2,UserSerializer,RegisterSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import (api_view,permission_classes,action )
