@@ -2,6 +2,25 @@ from rest_framework import serializers
 from course.models import Course ,Category,User,Review
 from django.contrib.auth.password_validation import validate_password
 
+class ReviewCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'rating', 'comment']
+        read_only_fields = ['id']
+
+    def validate_rating(self, value):
+        if value < 1 or value > 5:
+            raise serializers.ValidationError(
+                "Rating must be between 1 and 5."
+            )
+        return value
+
+    def validate_comment(self, value):
+        if not value.strip():
+            raise serializers.ValidationError(
+                "Comment cannot be empty."
+            )
+        return value
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
