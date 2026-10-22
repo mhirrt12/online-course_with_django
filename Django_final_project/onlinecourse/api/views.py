@@ -120,7 +120,7 @@ class CourseViewSet(ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(instructor=self.request.user)
-    @action(detail=True,methods=['post'],permission_classes=[IsAuthenticated,IsInstructorOrReadOnly])
+    @action(detail=True,methods=['post'],permission_classes=[IsAuthenticated])
     def enroll(self, request, pk=None):
      course = self.get_object()
 
